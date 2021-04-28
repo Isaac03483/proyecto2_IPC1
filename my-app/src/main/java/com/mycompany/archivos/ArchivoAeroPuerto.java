@@ -1,9 +1,6 @@
 package com.mycompany.archivos;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import com.mycompany.aeropuerto.AeroPuerto;
@@ -31,8 +28,37 @@ public class ArchivoAeroPuerto {
         
     }
 
-    public static void leerAeroPuerto(){
+    public static ArrayList<AeroPuerto> leerAeroPuertos(){
 
-        ArrayList<AeroPuerto> aeropuertos = new ArrayList<>();
+        ArrayList<AeroPuerto> aeroPuertos = new ArrayList<>();
+        String[] archivos = Constante.RUTA_AEROPUERTOS.list();
+        ObjectInputStream lector;
+
+        if(archivos.length == 0){
+            return null;
+
+        } else {
+            for(int i = 0; i < archivos.length; i++){
+
+                String archivo = archivos[i];
+                try {
+                    lector = new ObjectInputStream(new FileInputStream(Constante.RUTA_AEROPUERTOS+"/"+archivo));
+                    AeroPuerto aeroPuerto= (AeroPuerto)lector.readObject();
+                    aeroPuertos.add(aeroPuerto);
+                    lector.close();
+                } catch (FileNotFoundException e) {
+                    
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return aeroPuertos;
     }
 }

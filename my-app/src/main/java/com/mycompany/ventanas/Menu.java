@@ -3,13 +3,14 @@ package com.mycompany.ventanas;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import com.mycompany.constantes.Constante;
 import com.mycompany.manejadores.*;
 public class Menu extends JFrame{
     
     private JLabel etiquetaMenu, etiquetaImagen, etiquetaEmpresa;
     private JButton botonClientes, botonEmpresa;
     private JPanel panel;
-    private ImageIcon imagen = new ImageIcon("empresa.png");
     private ManejadorMenu manejador;
 
     public Menu(String titulo){
@@ -53,7 +54,7 @@ public class Menu extends JFrame{
 
         etiquetaImagen = new JLabel();
         etiquetaImagen.setBounds(435, 20, 100,50);
-        etiquetaImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(etiquetaImagen.getWidth(), etiquetaImagen.getHeight(), Image.SCALE_SMOOTH)));
+        etiquetaImagen.setIcon(new ImageIcon(Constante.IMAGEN.getImage().getScaledInstance(etiquetaImagen.getWidth(), etiquetaImagen.getHeight(), Image.SCALE_SMOOTH)));
         panel.add(etiquetaImagen);
 
         etiquetaEmpresa= new JLabel("AeroBalamDevs");

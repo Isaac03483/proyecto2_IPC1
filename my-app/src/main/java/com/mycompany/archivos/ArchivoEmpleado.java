@@ -6,11 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import com.mycompany.constantes.Constante;
-import com.mycompany.persona.empleados.Administrador;
 import com.mycompany.persona.empleados.Empleado;
 
 public class ArchivoEmpleado {
@@ -34,29 +34,36 @@ public class ArchivoEmpleado {
         }
     }
 
-    public static Empleado leerEmpleado(String usuario){
+    public static ArrayList<Empleado> leerEmpleados(){
 
-        FileInputStream archivo;
-        try {
-            archivo = new FileInputStream(Constante.RUTA_EMPLEADOS+"/"+usuario);
-            ObjectInputStream lector;
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        String [] archivos = Constante.RUTA_EMPLEADOS.list();
+        ObjectInputStream lector;
+        if(archivos.length == 0){
+            return null;
 
-            lector = new ObjectInputStream(archivo);
+        } else {
+            for(int i = 0; i < archivos.length; i++){
 
-            Empleado empleado = (Empleado)lector.readObject();
-            lector.close();
-
-            return empleado;
-            
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Este usuario no existe.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            
-            e.printStackTrace();
+                String archivo = archivos[i];
+                try {
+                    lector = new ObjectInputStream(new FileInputStream(Constante.RUTA_EMPLEADOS+"/"+archivo));
+                    Empleado empleado = (Empleado)lector.readObject();
+                    empleados.add(empleado);
+                    lector.close();
+                } catch (FileNotFoundException e) {
+                    
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    
+                    e.printStackTrace();
+                }
+            }
         }
-        return null;
+
+        return empleados;
     }
 }

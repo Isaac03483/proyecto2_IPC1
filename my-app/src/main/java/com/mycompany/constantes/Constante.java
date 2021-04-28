@@ -1,9 +1,11 @@
 package com.mycompany.constantes;
 
 import java.io.File;
+import javax.swing.ImageIcon;
 
-public class Constante {
+public class Constante{
     
+    public static final String TITULO = "AeroBalamDevs";
     public static final int CARACTERES_CONTRASENA=8;
     public static final int CARACTERES_CODIGO_VUELO = 9;
     public static final int CARACTERES_CODIGO_AVION=6;
@@ -19,4 +21,5 @@ public class Constante {
     public static final File RUTA_VUELOS=new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/vuelos");
     public static final File RUTA_PASAJEROS=new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/pasajeros");
     public static final File RUTA_EMPLEADOS = new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/empleados");
+    public static final ImageIcon IMAGEN = new ImageIcon("empresa.png");
 }

@@ -1,5 +1,6 @@
 package com.mycompany.aeropuerto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.mycompany.constantes.Constante;
@@ -14,6 +15,7 @@ public class Vuelo implements Serializable{
     private double precioBoleto;
     private Date fechaSalida;
     private EstadoVuelo estado;
+    private Distancia distancia;
 
     /**
      * Constructor creado para generar más vuelos mediante la interfaz gráfica
@@ -23,7 +25,7 @@ public class Vuelo implements Serializable{
      * @param precioBoleto
      * @param fechaSalida
      */
-    public Vuelo(int codigoAvion, String nombreAeroPuertoOrigen, String nombreAeroPuertoDestino, double precioBoleto, Date fechaSalida){
+    public Vuelo(int codigoAvion, String nombreAeroPuertoOrigen, String nombreAeroPuertoDestino, double precioBoleto, Date fechaSalida, Distancia distancia){
 
         this.codigoVuelo = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(Integer.toString(codigoVuelo), Constante.CARACTERES_CODIGO_VUELO, false));
         this.codigoAvion = codigoAvion;
@@ -32,6 +34,7 @@ public class Vuelo implements Serializable{
         this.precioBoleto = precioBoleto;
         this.fechaSalida = fechaSalida;
         this.estado = EstadoVuelo.ENESPERA;
+        this.distancia = distancia;
     }
 
     /**

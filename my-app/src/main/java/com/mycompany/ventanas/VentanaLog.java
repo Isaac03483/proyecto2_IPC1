@@ -65,11 +65,11 @@ public class VentanaLog extends JDialog{
     private void colocarTexto(){
 
         textoUsuario = new JTextField();
-        textoUsuario.setBounds(200, 40,120, 20);
+        textoUsuario.setBounds(170, 40,150, 20);
         panel.add(textoUsuario);
 
         textoContrasena = new JPasswordField();
-        textoContrasena.setBounds(200, 80, 120, 20);
+        textoContrasena.setBounds(190, 80, 130, 20);
         panel.add(textoContrasena);
     }
 
@@ -105,7 +105,7 @@ public class VentanaLog extends JDialog{
             
             public void actionPerformed(ActionEvent ae){
 
-                manejador.verificarUsuario();
+                manejador.verificarUsuario(menu);
             }
         });
     }

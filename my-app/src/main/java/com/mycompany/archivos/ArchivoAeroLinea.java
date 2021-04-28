@@ -16,11 +16,16 @@ public class ArchivoAeroLinea {
         try {
             File archivo = new File(Constante.RUTA_AEROPUERTOS+"/"+aerolinea.getNombreAeroPuerto());
             if(archivo.exists()){
-                ObjectOutputStream objeto = new ObjectOutputStream(new FileOutputStream(Constante.RUTA_AEROLINEAS+"/"+aerolinea.getNombreAeroLinea()));
-                objeto.writeObject(aerolinea);
-                objeto.close();
+                File aero = new File(Constante.RUTA_AEROLINEAS+"/"+aerolinea.getNombreAeroLinea());
+                if(aero.exists()){
+                    JOptionPane.showMessageDialog(null, "Ya existe una Aerolinea con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    ObjectOutputStream objeto = new ObjectOutputStream(new FileOutputStream(Constante.RUTA_AEROLINEAS+"/"+aerolinea.getNombreAeroLinea()));
+                    objeto.writeObject(aerolinea);
+                    objeto.close();
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "No existe un aeropuerto con ese nombre.", "AeroBalamDevs", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No existe un aeropuerto con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block

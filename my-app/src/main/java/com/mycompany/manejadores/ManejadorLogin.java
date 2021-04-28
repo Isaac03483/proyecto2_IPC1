@@ -1,10 +1,13 @@
 package com.mycompany.manejadores;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import com.mycompany.archivos.ArchivoEmpleado;
+import com.mycompany.constantes.Constante;
 import com.mycompany.persona.empleados.*;
-import com.mycompany.ventanas.VentanaLog;
+import com.mycompany.ventanas.*;
 
 public class ManejadorLogin {
     
@@ -15,23 +18,40 @@ public class ManejadorLogin {
 
     }
 
-    public void verificarUsuario(){
+    public void verificarUsuario(Menu menu){
 
-        Empleado empleado = ArchivoEmpleado.leerEmpleado(this.ventana.getUsuario());
-        if(empleado != null){
-            
-            if(empleado.getContrasena().equals(this.ventana.getContrasena())){
+        ArrayList<Empleado> empleados = ArchivoEmpleado.leerEmpleados();
+        
+        if(empleados != null){
+
+            Empleado empleado =verificarExistencia(empleados, this.ventana.getContrasena(), this.ventana.getUsuario());
+            if(empleado != null){
+
                 if(empleado instanceof Administrador){
-                    JOptionPane.showMessageDialog(null, "Administrador", "AeroValamDevs", JOptionPane.INFORMATION_MESSAGE);
-                } else if(empleado instanceof Operador){
-                    JOptionPane.showMessageDialog(null, "Operador", "AeroValamDevs", JOptionPane.INFORMATION_MESSAGE);
-                } else if(empleado instanceof Gerente){
-                    JOptionPane.showMessageDialog(null, "Gerente", "AeroValamDevs", JOptionPane.INFORMATION_MESSAGE);
+                    ((Administrador)empleado).menuAdministrador(menu);
+                } else if (empleado instanceof Gerente){
+                    ((Gerente)empleado).menuGerente();
+                } else if (empleado instanceof Operador){
+                    
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario incorrecto", "AeroValamDevs", JOptionPane.INFORMATION_MESSAGE);
-                
+                JOptionPane.showMessageDialog(null, "Usuario incorrecto.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
             }
         }
+    }
+
+    private Empleado verificarExistencia(ArrayList<Empleado> empleados, String contrasena, String usuario){
+
+        for(Empleado emp: empleados){
+
+            if(emp.getUsuario().equals(usuario)){
+                if(emp.getContrasena().equals(contrasena)){
+                    return emp;
+                }
+            }
+        }
+
+        return null;
+
     }
 }
