@@ -19,7 +19,18 @@ public class Constante{
     public static final File RUTA_RESERVACIONES=new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/reservaciones");
     public static final File RUTA_TARJETAS=new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/tarjeta");
     public static final File RUTA_VUELOS=new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/vuelos");
-    public static final File RUTA_PASAJEROS=new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/pasajeros");
     public static final File RUTA_EMPLEADOS = new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/empleados");
+    public static final File RUTA_DISTANCIAS = new File("/home/isaac/Escritorio/2021/proyecto2_IPC1/distancia");
     public static final ImageIcon IMAGEN = new ImageIcon("empresa.png");
+    public static final String AEROPUERTO = "AEROPUERTO";
+    public static final String AEROLINEA = "AEROLÍNEA";
+    public static final String AVION = "AVION";
+    public static final String VUELO = "VUELO";
+    public static final String DISTANCIA ="DISTANCIA";
+    public static final String PASAPORTE = "PASAPORTE";
+    public static final String TARJETA = "TARJETA";
+    public static final String RESERVACION ="RESERVACION";
+    public static final String RENOVACION_PASAPORTE = "RENOVACION_PASAPORTE";
+
+
 }

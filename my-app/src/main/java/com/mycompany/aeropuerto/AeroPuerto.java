@@ -1,8 +1,6 @@
 package com.mycompany.aeropuerto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AeroPuerto implements Serializable{
     
@@ -22,5 +20,8 @@ public class AeroPuerto implements Serializable{
     public String getCiudad(){return this.ciudad;}
 
     public String getPais(){return this.pais;}
+
+    @Override
+    public String toString(){return this.nombreAeroPuerto+"-"+this.ciudad;}
 
 }

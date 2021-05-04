@@ -13,13 +13,12 @@ public class Menu extends JFrame{
     private JPanel panel;
     private ManejadorMenu manejador;
 
-    public Menu(String titulo){
+    public Menu(){
 
-        this.setTitle(titulo);
+        this.setTitle(Constante.TITULO);
         this.setSize(600,400);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         iniciarComponentes();

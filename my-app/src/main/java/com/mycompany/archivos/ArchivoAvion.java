@@ -1,12 +1,9 @@
 package com.mycompany.archivos;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.*;
 
-import com.mycompany.aeropuerto.Avion;
+import com.mycompany.aeropuerto.avion.Avion;
 import com.mycompany.constantes.Constante;
 
 public class ArchivoAvion {
@@ -17,7 +14,7 @@ public class ArchivoAvion {
         FileOutputStream archivo;
         try{
             
-            archivo = new FileOutputStream(Constante.RUTA_AVIONES+"/"+avion.getCodigoAvion());
+            archivo = new FileOutputStream(Constante.RUTA_AVIONES+"/"+avion.getCodigoAvion()+"_"+avion.getNombreAeroLinea());
             ObjectOutputStream escritor = new ObjectOutputStream(archivo);
 
             escritor.writeObject(avion);
@@ -28,6 +25,36 @@ public class ArchivoAvion {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Avion> leerAvion(){
+
+        ArrayList<Avion> aviones = new ArrayList<>();
+        File[] archivos = Constante.RUTA_AVIONES.listFiles();
+
+        if(archivos.length == 0){
+            return null;
+        } else {
+            for(int i = 0; i < archivos.length; i++){
+                try {
+                    ObjectInputStream lector = new ObjectInputStream(new FileInputStream(archivos[i]));
+                    Avion avion = (Avion)lector.readObject();
+                    aviones.add(avion);
+                    lector.close();
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+            }
+            return aviones;
         }
     }
 }

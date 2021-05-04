@@ -66,6 +66,7 @@ public class Pasaporte implements Serializable{
      * @param paisActual
      * @param millasRecorridas
      */
+    
     public Pasaporte(int noPasaporte, String contrasena, Date fechaNacimiento, String nacionalidad,EstadoCivil estadoCivil, String nombre, String apellido, Sexo sexo, Date fechaVencimiento, Date fechaEmision, String paisActual, double millasRecorridas){
         
         this.noPasaporte=noPasaporte;
@@ -87,6 +88,8 @@ public class Pasaporte implements Serializable{
             this.contrasena = com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(this.contrasena, Constante.CARACTERES_CONTRASENA, true);
         }
     }
+
+    public void setFechaVencimiento(Date fechaVencimiento){this.fechaVencimiento = fechaVencimiento;}
 
     public int getNoPasaporte(){return this.noPasaporte;}
 

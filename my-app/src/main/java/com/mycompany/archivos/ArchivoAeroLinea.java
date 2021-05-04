@@ -2,9 +2,6 @@ package com.mycompany.archivos;
 
 import java.io.*;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import com.mycompany.constantes.*;
 import com.mycompany.aeropuerto.AeroLinea;
 
@@ -14,19 +11,10 @@ public class ArchivoAeroLinea {
     public static void guardarAeroLinea(AeroLinea aerolinea){
 
         try {
-            File archivo = new File(Constante.RUTA_AEROPUERTOS+"/"+aerolinea.getNombreAeroPuerto());
-            if(archivo.exists()){
-                File aero = new File(Constante.RUTA_AEROLINEAS+"/"+aerolinea.getNombreAeroLinea());
-                if(aero.exists()){
-                    JOptionPane.showMessageDialog(null, "Ya existe una Aerolinea con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    ObjectOutputStream objeto = new ObjectOutputStream(new FileOutputStream(Constante.RUTA_AEROLINEAS+"/"+aerolinea.getNombreAeroLinea()));
-                    objeto.writeObject(aerolinea);
-                    objeto.close();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe un aeropuerto con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
-            }
+                  
+            ObjectOutputStream objeto = new ObjectOutputStream(new FileOutputStream(Constante.RUTA_AEROLINEAS+"/"+aerolinea.getNombreAeroLinea()+"_"+aerolinea.getNombreAeroPuerto()));
+            objeto.writeObject(aerolinea);
+            objeto.close();                
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -66,8 +54,8 @@ public class ArchivoAeroLinea {
                     e.printStackTrace();
                 }
             }
+            return aeroLineas;
         }
 
-        return aeroLineas;
     }
 }

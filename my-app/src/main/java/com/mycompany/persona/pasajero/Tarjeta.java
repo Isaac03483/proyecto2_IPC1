@@ -5,7 +5,7 @@ import com.mycompany.constantes.*;
 
 public class Tarjeta implements Serializable{
 
-    private int noTarjeta;
+    private long noTarjeta;
     private int noPasaporte;
     private double dineroActual;
     private int codicoCVC;
@@ -31,18 +31,20 @@ public class Tarjeta implements Serializable{
      * @param codigoCVC
      */
     
-    public Tarjeta(int noTarjeta, int noPasaporte, double dineroActual, int codigoCVC){
+    public Tarjeta(long noTarjeta, int noPasaporte, double dineroActual, int codigoCVC){
         this.noTarjeta=noTarjeta;
         this.noPasaporte=noPasaporte;
         this.dineroActual=dineroActual;
         this.codicoCVC=codigoCVC;
     }
 
-    public int getNoTarjeta(){return this.noTarjeta;}
+    public long getNoTarjeta(){return this.noTarjeta;}
 
     public int getNoPasaporte(){return this.noPasaporte;}
 
     public double getDinero(){return this.dineroActual;}
+
+    public void setDinero(Double dinero){this.dineroActual -=dinero;}
 
     public int getCodigoCVC(){return this.codicoCVC;}
 }

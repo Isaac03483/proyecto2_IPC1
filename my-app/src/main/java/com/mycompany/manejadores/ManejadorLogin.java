@@ -28,7 +28,7 @@ public class ManejadorLogin {
             if(empleado != null){
 
                 if(empleado instanceof Administrador){
-                    ((Administrador)empleado).menuAdministrador(menu);
+                    ((Administrador)empleado).seleccionarAeroPuerto(menu);
                 } else if (empleado instanceof Gerente){
                     ((Gerente)empleado).menuGerente();
                 } else if (empleado instanceof Operador){
@@ -42,11 +42,14 @@ public class ManejadorLogin {
 
     private Empleado verificarExistencia(ArrayList<Empleado> empleados, String contrasena, String usuario){
 
-        for(Empleado emp: empleados){
+        if(empleados != null){
+            
+            for(Empleado emp: empleados){
 
-            if(emp.getUsuario().equals(usuario)){
-                if(emp.getContrasena().equals(contrasena)){
-                    return emp;
+                if(emp.getUsuario().equals(usuario)){
+                    if(emp.getContrasena().equals(contrasena)){
+                        return emp;
+                    }
                 }
             }
         }

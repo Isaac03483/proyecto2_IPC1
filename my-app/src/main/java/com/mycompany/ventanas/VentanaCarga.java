@@ -7,22 +7,24 @@ import javax.swing.*;
 
 import com.mycompany.constantes.Constante;
 import com.mycompany.manejadores.ManejadorCarga;
+import com.mycompany.persona.empleados.Administrador;
 
 public class VentanaCarga extends JFrame{
     
     private JPanel panel;
-    private JButton botonCargar;
+    private JButton botonCargar, botonMenuAdministrador, botonMenuPrincipal;
     private JTextArea areaTexto;
     private ManejadorCarga manejador;
+    private Administrador admin;
 
-    public VentanaCarga(){
+    public VentanaCarga(Administrador admin){
 
         this.setTitle(Constante.TITULO);
         this.setSize(400,400);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-
+        this.admin = admin;
         iniciarComponentes();
         manejador = new ManejadorCarga(this);
     }
@@ -52,18 +54,34 @@ public class VentanaCarga extends JFrame{
         botonCargar.setForeground(Color.BLACK);
         oyenteCarga();
 
+        botonMenuAdministrador = new JButton("Administrar");
+        botonMenuAdministrador.setBounds(50, 330, 150, 30);
+        panel.add(botonMenuAdministrador);
+        botonMenuAdministrador.setFont(new Font("Basic", Font.BOLD, 14));
+        botonMenuAdministrador.setForeground(Color.BLACK);
+        oyenteAdministrar();
+
+        botonMenuPrincipal = new JButton("Principal");
+        botonMenuPrincipal.setBounds(220, 330, 130, 30);
+        panel.add(botonMenuPrincipal);
+        botonMenuPrincipal.setFont(new Font("Basic", Font.BOLD, 14));
+        botonMenuPrincipal.setForeground(Color.BLACK);
+        oyentePrincipal();
+
     }
 
     private void colocarArea(){
 
         areaTexto = new JTextArea();
-        areaTexto.setBounds(40, 100, 320, 220);
+        areaTexto.setBounds(40, 100, 320, 200);
         panel.add(areaTexto);
     }
 
     public JButton getBoton(){return this.botonCargar;}
 
     public JTextArea getArea(){return this.areaTexto;}
+
+    public Administrador getAdmin(){return this.admin;}
 
     private void oyenteCarga(){
 
@@ -72,6 +90,26 @@ public class VentanaCarga extends JFrame{
             public void actionPerformed(ActionEvent ae){
                 
               manejador.accionCargar();  
+            }
+        });
+    }
+
+    private void oyenteAdministrar(){
+
+        botonMenuAdministrador.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent ae){
+                manejador.accionAdministrar();
+            }
+        });
+    }
+
+    private void oyentePrincipal(){
+
+        botonMenuPrincipal.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent ae){
+                manejador.accionPrincipal();
             }
         });
     }

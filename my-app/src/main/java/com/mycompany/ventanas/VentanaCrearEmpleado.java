@@ -2,9 +2,13 @@ package com.mycompany.ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import com.mycompany.aeropuerto.AeroLinea;
+import com.mycompany.archivos.ArchivoAeroLinea;
 import com.mycompany.constantes.*;
 import com.mycompany.manejadores.ManejadorCrearEmpleado;
+import com.mycompany.persona.empleados.Administrador;
 
 import javax.swing.*;
 
@@ -12,19 +16,21 @@ public class VentanaCrearEmpleado extends JFrame{
     
     private JPanel panel;
     private JButton botonMenuPrincipal, botonCrear, botonMenuAdmin;
-    private JLabel etiquetaImagen, etiquetaEmpresa, etiquetaTitulo, etiquetaNombre, etiquetaApellido, etiquetaPuesto, etiquetaAeroLinea;
+    private JLabel etiquetaImagen, etiquetaEmpresa, etiquetaTitulo, etiquetaNombre, etiquetaApellido, etiquetaPuesto, etiquetaAeroLinea, etiquetaAeroPuertoActual;
     private JTextField textoNombre, textoApellido;
     private JRadioButton radioGerente, radioOperador, radioAdmin;
     private ButtonGroup grupo;
     private JComboBox<AeroLinea> combo;
     private ManejadorCrearEmpleado manejador;
+    private Administrador admin;
 
-    public VentanaCrearEmpleado(){
+    public VentanaCrearEmpleado(Administrador admin){
         this.setTitle(Constante.TITULO);
         this.setSize(600,400);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.admin = admin;
 
         iniciarComponentes();
         manejador = new ManejadorCrearEmpleado(this);
@@ -55,11 +61,19 @@ public class VentanaCrearEmpleado extends JFrame{
         etiquetaImagen.setIcon(new ImageIcon(Constante.IMAGEN.getImage().getScaledInstance(etiquetaImagen.getWidth(), etiquetaImagen.getHeight(), Image.SCALE_SMOOTH)));
         panel.add(etiquetaImagen);
 
-        etiquetaEmpresa= new JLabel("AeroBalamDevs");
+        etiquetaEmpresa= new JLabel(Constante.TITULO);
         etiquetaEmpresa.setBounds(425, 75, 150, 20);
         panel.add(etiquetaEmpresa);
         etiquetaEmpresa.setFont(new Font("Basic", Font.BOLD, 14));
         etiquetaEmpresa.setForeground(Color.BLACK);
+
+        etiquetaAeroPuertoActual = new  JLabel(this.admin.getAeroPuertoActual());
+        etiquetaAeroPuertoActual.setBounds(30, 70, 200, 20);
+        panel.add(etiquetaAeroPuertoActual);
+        etiquetaAeroPuertoActual.setFont(new Font("Basic", Font.BOLD, 14));
+        etiquetaAeroPuertoActual.setForeground(Color.BLACK);
+        etiquetaAeroPuertoActual.setToolTipText("Click para cambiar de aeroPuerto.");
+        oyenteAeroPuerto();
 
         etiquetaTitulo = new JLabel("CREAR EMPLEADO", SwingConstants.CENTER);
         etiquetaTitulo.setBounds(0, 40, 600, 30);
@@ -111,6 +125,7 @@ public class VentanaCrearEmpleado extends JFrame{
         radioAdmin.setBackground(Color.GRAY);
         radioAdmin.setForeground(Color.BLACK);
         radioAdmin.setFont(new Font("Basic", Font.BOLD, 14));
+        radioAdmin.setSelected(true);
 
         radioGerente = new JRadioButton("Gerente.");
         radioGerente.setBounds(200, 250, 100, 20);
@@ -135,14 +150,16 @@ public class VentanaCrearEmpleado extends JFrame{
     private void colocarCombo(){
         
         combo = new JComboBox<>();
-        combo.setBounds(150, 290, 120, 20);
+        combo.setBounds(150, 290, 150, 20);
         panel.add(combo);
+
+        agregarAeroLineas();
     }
 
     private void colocarBoton(){
 
         botonCrear = new JButton("Crear");
-        botonCrear.setBounds(410, 100, 100, 30);
+        botonCrear.setBounds(410, 120, 100, 30);
         panel.add(botonCrear);
         botonCrear.setFont(new Font("Basic", Font.BOLD, 14));
         botonCrear.setForeground(Color.BLACK);
@@ -150,16 +167,20 @@ public class VentanaCrearEmpleado extends JFrame{
         oyenteCrear();
 
         botonMenuAdmin = new JButton("Administrar");
-        botonMenuAdmin.setBounds(410, 150, 130, 30);
+        botonMenuAdmin.setBounds(410, 170, 130, 30);
         panel.add(botonMenuAdmin);
         botonMenuAdmin.setFont(new Font("Basic", Font.BOLD, 14));
         botonMenuAdmin.setForeground(Color.BLACK);
 
+        oyenteAdministrar();
+
         botonMenuPrincipal = new JButton("Principal");
-        botonMenuPrincipal.setBounds(410, 200, 100, 30);
+        botonMenuPrincipal.setBounds(410, 220, 130, 30);
         panel.add(botonMenuPrincipal);
         botonMenuPrincipal.setFont(new Font("Basic", Font.BOLD, 14));
         botonMenuPrincipal.setForeground(Color.BLACK);
+
+        oyentePricipal();
     }
 
     public JTextField getTextoNombre(){return this.textoNombre;}
@@ -174,6 +195,8 @@ public class VentanaCrearEmpleado extends JFrame{
 
     public JRadioButton getRadioOperador(){return this.radioOperador;}
 
+    public Administrador getAdmin(){return this.admin;}
+
     private void oyenteCrear(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -181,6 +204,51 @@ public class VentanaCrearEmpleado extends JFrame{
             public void actionPerformed(ActionEvent ae){
 
                 manejador.accionCrear();
+            }
+        });
+    }
+
+    private void agregarAeroLineas(){
+
+        ArrayList<AeroLinea> aeroLineas = ArchivoAeroLinea.leerAeroLinea();
+
+        if(aeroLineas != null){
+            for(AeroLinea aeroLinea: aeroLineas){
+                this.combo.addItem((AeroLinea)aeroLinea);
+            }
+        }
+    }
+
+    private void oyenteAdministrar(){
+
+        botonMenuAdmin.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent  ae){
+
+                manejador.accionAdministrar();
+            }
+        });
+    }
+
+    private void oyentePricipal(){
+
+        botonMenuPrincipal.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent  ae){
+
+                manejador.accionPrincipal();
+            }
+        });
+    }
+
+    private void oyenteAeroPuerto(){
+
+        etiquetaAeroPuertoActual.addMouseListener(new MouseAdapter(){
+
+            @Override
+            public void mouseClicked(MouseEvent me){
+
+                manejador.accionAeroPuerto();
             }
         });
     }

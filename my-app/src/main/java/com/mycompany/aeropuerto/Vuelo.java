@@ -15,7 +15,6 @@ public class Vuelo implements Serializable{
     private double precioBoleto;
     private Date fechaSalida;
     private EstadoVuelo estado;
-    private Distancia distancia;
 
     /**
      * Constructor creado para generar más vuelos mediante la interfaz gráfica
@@ -25,7 +24,7 @@ public class Vuelo implements Serializable{
      * @param precioBoleto
      * @param fechaSalida
      */
-    public Vuelo(int codigoAvion, String nombreAeroPuertoOrigen, String nombreAeroPuertoDestino, double precioBoleto, Date fechaSalida, Distancia distancia){
+    public Vuelo(int codigoAvion, String nombreAeroPuertoOrigen, String nombreAeroPuertoDestino, double precioBoleto, Date fechaSalida){
 
         this.codigoVuelo = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(Integer.toString(codigoVuelo), Constante.CARACTERES_CODIGO_VUELO, false));
         this.codigoAvion = codigoAvion;
@@ -34,7 +33,6 @@ public class Vuelo implements Serializable{
         this.precioBoleto = precioBoleto;
         this.fechaSalida = fechaSalida;
         this.estado = EstadoVuelo.ENESPERA;
-        this.distancia = distancia;
     }
 
     /**
@@ -54,8 +52,24 @@ public class Vuelo implements Serializable{
         this.nombreAeroPuertoDestino = nombreAeroPuertoDestino;
         this.precioBoleto = precioBoleto;
         this.fechaSalida = fechaSalida;
-        this.estado = EstadoVuelo.COMPLETADO;
+        this.estado = EstadoVuelo.ENESPERA;
     }
+
+    public int getCodigoVuelo(){return this.codigoVuelo;}
+
+    public int getCodigoAvion(){return this.codigoAvion;}
+
+    public String getAeroPuertoOrigen(){return this.nombreAeroPuertoOrigen;}
+
+    public String getAeroPuertoDestino(){return this.nombreAeroPuertoDestino;}
+
+    public double getPrecioBoleto(){return this.precioBoleto;}
+
+    public Date getFechaSalida(){return this.fechaSalida;}
+
+    public EstadoVuelo getEstadoVuelo(){return this.estado;}
+
+    public void setEstadoVuelo(){this.estado = EstadoVuelo.COMPLETADO;}
 
 
 }

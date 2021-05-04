@@ -11,6 +11,7 @@ public class Empleado extends Persona{
     {
         this.contrasena="";
     }
+    
     public Empleado(String nombre, String apellido) {
         super(nombre, apellido);
         this.usuario = com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo((this.nombre+this.apellido), (this.nombre.length()+ this.apellido.length() + 3), false);

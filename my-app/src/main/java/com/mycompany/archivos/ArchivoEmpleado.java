@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -56,7 +57,8 @@ public class ArchivoEmpleado {
                     e.printStackTrace();
                 } catch (IOException e) {
                     
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    System.err.println("Este  es el error atrapado.");
                 } catch (ClassNotFoundException e) {
                     
                     e.printStackTrace();

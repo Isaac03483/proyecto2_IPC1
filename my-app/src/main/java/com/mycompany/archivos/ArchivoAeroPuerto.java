@@ -2,7 +2,6 @@ package com.mycompany.archivos;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import com.mycompany.aeropuerto.AeroPuerto;
 import com.mycompany.constantes.Constante;
 
@@ -11,13 +10,13 @@ public class ArchivoAeroPuerto {
 
     public static void guardarAeroPuerto(AeroPuerto aeropuerto){
 
-        FileOutputStream file;
+        
         try {
-            file = new FileOutputStream(Constante.RUTA_AEROPUERTOS+"/"+aeropuerto.getNombreAeroPuerto());
-            ObjectOutputStream objeto = new ObjectOutputStream(file);
-            objeto.writeObject(aeropuerto);
-            objeto.close();
 
+            ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constante.RUTA_AEROPUERTOS+"/"+aeropuerto.getNombreAeroPuerto()+"_"+aeropuerto.getCiudad()));
+            escritor.writeObject(aeropuerto);
+            escritor.close();
+            
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

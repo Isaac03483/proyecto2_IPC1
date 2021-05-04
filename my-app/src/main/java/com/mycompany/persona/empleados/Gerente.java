@@ -5,14 +5,17 @@ import javax.swing.JOptionPane;
 import com.mycompany.ventanas.VentanaGerente;
 import com.mycompany.ventanas.VentanaOperador;
 
-public class Gerente extends Operador{
+public class Gerente extends Empleado{
 
-    public Gerente(String nombre, String apellido) {
+    private String nombreAeroLinea;
+
+    public Gerente(String nombre, String apellido,String nombreAeroLinea) {
         super(nombre, apellido);
-        
+        this.nombreAeroLinea=nombreAeroLinea;
     }
-    
 
+    public String getNombreAeroLinea(){return this.nombreAeroLinea;}
+    
     public void menuGerente(){
         int opcionMenu;
 
@@ -26,7 +29,7 @@ public class Gerente extends Operador{
                     case 0:
                     break;
                     case 1:
-                    VentanaGerente ventanaGerente = new VentanaGerente();
+                    VentanaGerente ventanaGerente = new VentanaGerente(this);
                     ventanaGerente.setVisible(true);
                     break;
                     case 2:
