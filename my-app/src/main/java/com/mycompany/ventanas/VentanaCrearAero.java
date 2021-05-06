@@ -68,7 +68,7 @@ public class VentanaCrearAero extends JFrame{
         etiquetaEmpresa.setForeground(Color.BLACK);
 
         etiquetaAeroPuertoActual = new  JLabel(this.admin.getAeroPuertoActual());
-        etiquetaAeroPuertoActual.setBounds(30, 70, 200, 20);
+        etiquetaAeroPuertoActual.setBounds(30, 70, 150, 20);
         panel.add(etiquetaAeroPuertoActual);
         etiquetaAeroPuertoActual.setFont(new Font("Basic", Font.BOLD, 14));
         etiquetaAeroPuertoActual.setForeground(Color.BLACK);
@@ -116,20 +116,20 @@ public class VentanaCrearAero extends JFrame{
     private void colocarTexto(){
 
         textoNombreAeroPuerto = new JTextField();
-        textoNombreAeroPuerto.setBounds(260, 145, 120, 20);
+        textoNombreAeroPuerto.setBounds(220, 145, 120, 20);
         panel.add(textoNombreAeroPuerto);
 
         textoNombreAeroLinea = new JTextField();
-        textoNombreAeroLinea.setBounds(260, 185, 120, 20);
+        textoNombreAeroLinea.setBounds(220, 185, 120, 20);
         panel.add(textoNombreAeroLinea);
         textoNombreAeroLinea.setVisible(false);
 
         textoPais = new JTextField();
-        textoPais.setBounds(150, 185, 120, 20);
+        textoPais.setBounds(130, 185, 120, 20);
         panel.add(textoPais);
 
         textoCiudad = new JTextField();
-        textoCiudad.setBounds(160, 225, 110, 20);
+        textoCiudad.setBounds(140, 225, 110, 20);
         panel.add(textoCiudad);
     }
 
@@ -161,7 +161,7 @@ public class VentanaCrearAero extends JFrame{
     private void colocarCombo(){
         
         comboAeroPuerto = new JComboBox<>();
-        comboAeroPuerto.setBounds(260, 145, 150, 20);
+        comboAeroPuerto.setBounds(220, 145, 200, 20);
         panel.add(comboAeroPuerto);
         comboAeroPuerto.setVisible(false);
     }

@@ -12,7 +12,6 @@ public class ManejadorCarga {
 
     private VentanaCarga carga;
     private String archivoALeer;
-    private String nombreArchivo;
     private HiloCarga hilo;
 
 
@@ -40,16 +39,14 @@ public class ManejadorCarga {
         if(opcion == JFileChooser.APPROVE_OPTION){
 
             String archivo = buscarArchivo.getSelectedFile().getAbsolutePath();
-            String archivoUno = buscarArchivo.getSelectedFile().toString();
 
             this.archivoALeer = archivo;
-            this.nombreArchivo = archivoUno;
 
             try{
                 File archivoCargar = new File(archivoALeer);
                 if(archivoCargar.exists()){
                     
-                    hilo = new HiloCarga(archivoCargar, this.archivoALeer, this.carga);
+                    hilo = new HiloCarga(archivoCargar, this.carga);
                     hilo.start();
                 }
             } catch(NullPointerException e){

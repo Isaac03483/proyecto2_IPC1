@@ -3,28 +3,24 @@ package com.mycompany.cargaDatos;
 import java.util.ArrayList;
 
 import com.mycompany.aeropuerto.*;
+import com.mycompany.aeropuerto.avion.Avion;
 import com.mycompany.archivos.*;
+import com.mycompany.enums.EstadoVuelo;
 import com.mycompany.persona.empleados.*;
 import com.mycompany.persona.pasajero.*;
 
 public class Verificaciones {
     
-    public static boolean aeroPuertoExistente(String nombreAeroPuerto, String ciudad){
+    public static boolean aeroPuertoExistente(String nombreAeroPuerto){
 
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
         if(aeroPuertos != null){
             for(AeroPuerto aeroPuerto: aeroPuertos){
-                if(!ciudad.equals("")){
-                    if(aeroPuerto.getNombreAeroPuerto().equals(nombreAeroPuerto)){
-                        if(aeroPuerto.getCiudad().equals(ciudad)){
-                            return true;
-                        }
-                    }
-                } else {
-                    if(aeroPuerto.getNombreAeroPuerto().equals(nombreAeroPuerto)){
-                        return  true;
-                    }
+                
+                if(aeroPuerto.getNombreAeroPuerto().equals(nombreAeroPuerto)){
+                    return  true;
                 }
+                
             }
         }
         return false;
@@ -87,6 +83,7 @@ public class Verificaciones {
             for(Distancia distancia: distancias){
 
                 if(distancia.getAeroPuertoOrigen().equals(nombreAeroPuertoOrigen)){
+
                     if(distancia.getAeroPuertoDestino().equals(nombreAeroPuertoDestino)){
                         return true;
                     }
@@ -115,7 +112,7 @@ public class Verificaciones {
             for(Distancia distancia: distancias){
 
                 if(distancia.getAeroPuertoOrigen().equals(nombreAeroPuertoOrigen)){
-                    if(distancia.getAeroPuertoDestino().equals(nombreAeroPuertoDestino)){
+                    if(distancia.getAeroPuertoDestino().equals(nombreAeroPuertoDestino)){                
                         distanciaVuelo = distancia;
                     }
                 }
@@ -141,6 +138,24 @@ public class Verificaciones {
                     return true;
                 }
             }
+        }
+        return false;
+    }
+
+    public static boolean verificarAvionConVuelo(int codigoAvion){
+
+        ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
+
+        if(vuelos != null){
+
+            for(Vuelo vuelo: vuelos){
+                if(vuelo.getCodigoAvion() == codigoAvion){
+                    if(vuelo.getEstadoVuelo() == EstadoVuelo.ENESPERA){
+                        return true;
+                    }
+                }
+            }
+            
         }
         return false;
     }

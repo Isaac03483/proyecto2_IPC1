@@ -38,7 +38,7 @@ public class Administrador extends Empleado{
                     menuAdministrador(menu);
                     break;
                 }
-            }while(opcionMenu < 0 || opcionMenu > 3);
+            }while(opcionMenu < 0 || opcionMenu > this.aeroPuertos.length);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
         }catch(ArrayIndexOutOfBoundsException e){
@@ -57,7 +57,8 @@ public class Administrador extends Empleado{
                 +"\n2. Añadir empleado."
                 +"\n3. Añadir Aerolinea/Aeropuerto."
                 +"\n4. Ver reportes."
-                +"\n5. Operar vuelos.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
+                +"\n5. Operar vuelos."
+                +"\n6. Crear vuelo.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
                 switch(opcionMenu){
                     case 0:
                     break;
@@ -80,11 +81,16 @@ public class Administrador extends Empleado{
                     break;
                     case 5:
                     break;
+                    case 6:
+                    VentanaCrearVuelo vuelo = new VentanaCrearVuelo(this);
+                    vuelo.setVisible(true);
+                    this.menu.dispose();
+                    break;
                     default:
                     JOptionPane.showMessageDialog(null, "La opción seleccionada es incorrecta.", "AeroBalamDevs", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
-            }while(opcionMenu < 0 || opcionMenu > 3);
+            }while(opcionMenu < 0 || opcionMenu > 6);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
         }

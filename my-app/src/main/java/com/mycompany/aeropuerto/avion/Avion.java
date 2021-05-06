@@ -2,6 +2,7 @@ package com.mycompany.aeropuerto.avion;
 
 import java.io.Serializable;
 
+import com.mycompany.aeropuerto.avion.objeto_avion.*;
 import com.mycompany.constantes.*;
 
 public class Avion implements Serializable{
@@ -12,7 +13,7 @@ public class Avion implements Serializable{
     private int capacidadPasajeros;
     private double capacidadGasolina;
     private double consumoPorMilla;
-
+    private Objeto[][] objetos;
 
     /**
      * Constructor creado para crear más aviones desde el programa
@@ -23,15 +24,31 @@ public class Avion implements Serializable{
      * @param capacidadGasolina
      * @param consumoPorMilla
      */
-    public Avion(String nombreAeroLinea, String aeroPuertoActual, int capacidadPasajeros, double capacidadGasolina, double consumoPorMilla){
+    public Avion(String nombreAeroLinea, String aeroPuertoActual, double capacidadGasolina, double consumoPorMilla){
 
         this.nombreAeroLinea = nombreAeroLinea;
         this.aeroPuertoActual=aeroPuertoActual;
-        this.capacidadPasajeros = capacidadPasajeros;
         this.capacidadGasolina = capacidadGasolina;
         this.consumoPorMilla = consumoPorMilla;
         this.codigoAvion = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(Integer.toString(this.codigoAvion), Constante.CARACTERES_CODIGO_AVION, false));
-    
+        
+    }
+
+    public void generarMatiz(int noFilas, int noColumnas, int columnaPasillo){
+
+        this.capacidadPasajeros = (noFilas)*(noColumnas-1);
+        this.objetos = new Objeto[noFilas][noColumnas];
+        int noAsiento = 1;
+        for(int i = 0; i < noFilas; i++){
+            for(int j=0; j< noColumnas; j++){
+                if(j != columnaPasillo){
+                    objetos[i][j] = new Asiento("A"+noAsiento);
+                    noAsiento++;
+                } else {
+                    objetos[i][j] = new Pasillo();
+                }
+            }
+        }
     }
 
     /**
@@ -51,6 +68,28 @@ public class Avion implements Serializable{
         this.capacidadPasajeros = capacidadPasajeros;
         this.capacidadGasolina = capacidadGasolina;
         this.consumoPorMilla = consumoPorMilla;
+
+        generarMatriz();
+    }
+
+    public void generarMatriz(){
+
+        int noFilas = this.capacidadPasajeros/4;
+        if(noFilas <= 50){
+            int noAsiento =1;
+            objetos = new Objeto[noFilas][5];
+
+            for(int i = 0; i < noFilas; i++){
+                for(int j=0; j< 5; j++){
+                    if( j != 2){
+                        objetos[i][j] = new Asiento("A"+noAsiento);
+                        noAsiento++;
+                    } else {
+                        objetos[i][j] = new Pasillo();
+                    }
+                }
+            }
+        }
     }
 
 
@@ -68,4 +107,6 @@ public class Avion implements Serializable{
 
     public double getConsumoPorMilla() {return this.consumoPorMilla;}
 
+    @Override
+    public String toString(){return String.valueOf(this.codigoAvion);}
 }

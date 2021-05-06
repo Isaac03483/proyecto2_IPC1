@@ -67,23 +67,31 @@ public class ManejadorCrearAero {
 
             String nombreAeroPuerto = this.ventana.getTextoNombreAeroPuerto().getText();
             String ciudad = this.ventana.getTextoCiudad().getText();
-            if(!Verificaciones.aeroPuertoExistente(nombreAeroPuerto, ciudad)){
-                String pais = this.ventana.getTextoPais().getText();
-                ArchivoAeroPuerto.guardarAeroPuerto(new AeroPuerto(nombreAeroPuerto, ciudad, pais));
-                JOptionPane.showMessageDialog(null, "Aeropuerto creado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+            if(!nombreAeroPuerto.equals("") && !ciudad.equals("")){
+                if(!Verificaciones.aeroPuertoExistente(nombreAeroPuerto)){
+                    String pais = this.ventana.getTextoPais().getText();
+                    ArchivoAeroPuerto.guardarAeroPuerto(new AeroPuerto(nombreAeroPuerto, ciudad, pais));
+                    JOptionPane.showMessageDialog(null, "Aeropuerto creado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ya existe un aeropuerto con ese nombre en ese país.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Ya existe un aeropuerto con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Uno de los campos se encuentra vacío.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
             }
             
         } else if(this.ventana.getRadioAeroLinea().isSelected()){
 
             String nombreAeroLinea = this.ventana.getTextoNombreAeroLinea().getText();
             AeroPuerto aeroPuerto = (AeroPuerto)this.ventana.getComboBox().getSelectedItem();
-            if(!Verificaciones.aeroLineaExistente(nombreAeroLinea, aeroPuerto.getNombreAeroPuerto())){
-                ArchivoAeroLinea.guardarAeroLinea(new AeroLinea(nombreAeroLinea, aeroPuerto.getNombreAeroPuerto()));
-                JOptionPane.showMessageDialog(null, "Aerolinea creado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+            if(!nombreAeroLinea.equals("")){
+                if(!Verificaciones.aeroLineaExistente(aeroPuerto.getNombreAeroPuerto(), nombreAeroLinea)){
+                    ArchivoAeroLinea.guardarAeroLinea(new AeroLinea(aeroPuerto.getNombreAeroPuerto(), nombreAeroLinea));
+                    JOptionPane.showMessageDialog(null, "Aerolinea creado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Este aeropuerto ya cuenta con una aerolinea con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Este aeroPuerto ya cuenta con una aerolinea con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El campo nombre de aerolinea se encuentra vacío.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
             }
             
         }

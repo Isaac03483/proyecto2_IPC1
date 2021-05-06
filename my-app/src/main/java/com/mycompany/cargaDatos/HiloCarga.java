@@ -17,13 +17,11 @@ import com.mycompany.ventanas.VentanaCarga;
 public class HiloCarga extends Thread{
     
     private File archivoAProcesar;
-    private String nombreArchivo;
     private VentanaCarga ventana;
 
-    public HiloCarga(File archivoAProcesar, String ArchivoLeer, VentanaCarga ventana){
+    public HiloCarga(File archivoAProcesar, VentanaCarga ventana){
 
         this.archivoAProcesar = archivoAProcesar;
-        this.nombreArchivo = ArchivoLeer;
         this.ventana = ventana;
 
     }
@@ -63,7 +61,7 @@ public class HiloCarga extends Thread{
             try{
                 switch(auxiliarUno){
                     case Constante.AEROPUERTO:
-                    if(!Verificaciones.aeroPuertoExistente(datos[0], datos[1])){
+                    if(!Verificaciones.aeroPuertoExistente(datos[0])){
                         ArchivoAeroPuerto.guardarAeroPuerto(new AeroPuerto(datos[0], datos[1], datos[2]));
                     } else {
                         System.err.println("Ya existe ese aeropuerto en dicho país.");
@@ -79,7 +77,7 @@ public class HiloCarga extends Thread{
                     break;
     
                     case Constante.AVION:
-                    if(Verificaciones.aeroLineaExistente(datos[0], datos[1])){
+                    if(Verificaciones.aeroLineaExistente(datos[1], datos[0])){
                         ArchivoAvion.agregarAvion(new Avion(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5])));
                     } else {
                         System.err.println("Error, no se encontró la aerolinea o aeropuerto seleccionados.");
@@ -126,14 +124,18 @@ public class HiloCarga extends Thread{
                     Date fechaSalida = formatoFecha(datos[5]);
                     if(fechaSalida != null){
                         if(Verificaciones.verificarAvion(Integer.parseInt(datos[1]))){
-                            if(Verificaciones.verificarDistancia(datos[2], datos[3])){
-                                if(Verificaciones.verificarGasolina(Integer.parseInt(datos[1]), datos[2], datos[3])){
-                                    ArchivoVuelo.agregarVuelo(new Vuelo(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], datos[3], Double.parseDouble(datos[4]), fechaSalida));
+                            if(!Verificaciones.verificarAvionConVuelo(Integer.parseInt(datos[1]))){
+                                if(Verificaciones.verificarDistancia(datos[2], datos[3])){
+                                    if(Verificaciones.verificarGasolina(Integer.parseInt(datos[1]), datos[2], datos[3])){
+                                        ArchivoVuelo.agregarVuelo(new Vuelo(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], datos[3], Double.parseDouble(datos[4]), fechaSalida));
+                                    } else {
+                                        System.err.println("La distancia es mayor a la capacidad de gasolina que posee el avion.");
+                                    }
                                 } else {
-                                    System.err.println("La distancia es mayor a la capacidad de gasolina que posee el avion.");
+                                    System.err.println("No se ha encontrado la distancia.");
                                 }
                             } else {
-                                System.err.println("No se ha encontrado la distancia.");
+                                System.err.println("Este avión ya tiene un vuelo en proceso.");
                             }
                         } else {
                             System.err.println("No se ha encontrado el avion.");

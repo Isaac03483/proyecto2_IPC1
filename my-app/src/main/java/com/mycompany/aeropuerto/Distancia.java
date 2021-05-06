@@ -28,5 +28,7 @@ public class Distancia implements Serializable{
 
     public double getCantidadMillas(){return this.cantidadMillas;}
 
+    @Override
+    public String toString(){return this.nombreAeroPuertoOrigen+" -> "+this.nombreAeroPuertoDestino;}
     
 }
