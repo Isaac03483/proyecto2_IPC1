@@ -48,7 +48,7 @@ public class Pasaporte implements Serializable{
         this.fechaEmision = fechaEmision;
         this.fechaVencimiento = fechaVencimiento;
         this.paisActual = paisActual;
-        this.noPasaporte = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(String.valueOf(noPasaporte), Constante.CARACTERES_NUMERO_PASAPORTE, false));
+        this.noPasaporte = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo("", Constante.CARACTERES_NUMERO_PASAPORTE, false));
     }
 
     /**

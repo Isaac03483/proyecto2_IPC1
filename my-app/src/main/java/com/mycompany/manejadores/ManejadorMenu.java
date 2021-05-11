@@ -14,7 +14,7 @@ public class ManejadorMenu {
 
     public void accionCliente(){
         
-        VentanaCliente cliente = new VentanaCliente(this.menu);
+        VentanaCliente cliente = new VentanaCliente();
         cliente.setVisible(true);
         this.menu.dispose();
     }

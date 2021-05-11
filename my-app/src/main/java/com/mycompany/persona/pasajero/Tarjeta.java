@@ -17,10 +17,10 @@ public class Tarjeta implements Serializable{
      */
     public Tarjeta(int noPasaporte, double dineroActual){
 
-        this.noTarjeta=Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(String.valueOf(this.noTarjeta), Constante.CARACTERES_NUMERO_TARJETA, false));
+        this.noTarjeta=Long.parseLong(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo("", Constante.CARACTERES_NUMERO_TARJETA, false));
         this.noPasaporte=noPasaporte;
         this.dineroActual=dineroActual;
-        this.codicoCVC = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(String.valueOf(this.codicoCVC), Constante.CARACTERES_CODIGO_CVC, false));
+        this.codicoCVC = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo("", Constante.CARACTERES_CODIGO_CVC, false));
     }
 
     /**

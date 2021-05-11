@@ -1,5 +1,7 @@
 package com.mycompany.aeropuerto.avion.objeto_avion;
 
-public interface Objeto {
+import java.io.Serializable;
+
+public interface Objeto extends Serializable{
 
 }

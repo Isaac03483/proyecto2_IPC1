@@ -58,7 +58,8 @@ public class Administrador extends Empleado{
                 +"\n3. Añadir Aerolinea/Aeropuerto."
                 +"\n4. Ver reportes."
                 +"\n5. Operar vuelos."
-                +"\n6. Crear vuelo.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
+                +"\n6. Crear vuelo."
+                +"\n7. Crear Avion.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
                 switch(opcionMenu){
                     case 0:
                     break;
@@ -86,11 +87,16 @@ public class Administrador extends Empleado{
                     vuelo.setVisible(true);
                     this.menu.dispose();
                     break;
+                    case 7:
+                    VentanaCrearAvion avion = new VentanaCrearAvion(this);
+                    avion.setVisible(true);
+                    this.menu.dispose();
+                    break;
                     default:
                     JOptionPane.showMessageDialog(null, "La opción seleccionada es incorrecta.", "AeroBalamDevs", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
-            }while(opcionMenu < 0 || opcionMenu > 6);
+            }while(opcionMenu < 0 || opcionMenu > 7);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
         }
@@ -106,7 +112,7 @@ public class Administrador extends Empleado{
         if(aeroPuertos.length != 0){
             for(AeroPuerto aeroPuerto: aeros){
                 this.aeroPuertos[i] = aeroPuerto;
-                listaAeroPuertos+=(i+1)+" "+this.aeroPuertos[i]+"\n";
+                listaAeroPuertos+=(i+1)+". "+this.aeroPuertos[i]+"\n";
                 i++;
             }
             return listaAeroPuertos;

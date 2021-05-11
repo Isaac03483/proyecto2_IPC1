@@ -1,10 +1,13 @@
 package com.mycompany.cargaDatos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.mycompany.aeropuerto.*;
 import com.mycompany.aeropuerto.avion.Avion;
+import com.mycompany.aeropuerto.avion.objeto_avion.Asiento;
 import com.mycompany.archivos.*;
+import com.mycompany.enums.EstadoAsiento;
 import com.mycompany.enums.EstadoVuelo;
 import com.mycompany.persona.empleados.*;
 import com.mycompany.persona.pasajero.*;
@@ -128,7 +131,7 @@ public class Verificaciones {
         return false;
     }
 
-    public static boolean verificarPasaporte(int noPasaporte){
+    public static boolean verificarPasaporte(long noPasaporte){
 
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
         
@@ -136,6 +139,75 @@ public class Verificaciones {
             for(Pasaporte pasaporte: pasaportes){
                 if(pasaporte.getNoPasaporte() == noPasaporte){
                     return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean verificarPasaporteVuelo(int noPasaporte){
+
+        ArrayList<Reservacion> reservaciones = ArchivoReservacion.leerReservacion();
+        ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
+        int codigoVuelo =0;
+        if(reservaciones != null){
+
+            for(Reservacion reservacion: reservaciones){
+                if(reservacion.getNoPasaporte() == noPasaporte){
+                    codigoVuelo = reservacion.getCodigoVuelo();
+                }
+            }
+        }
+
+        if(codigoVuelo != 0){
+            for(Vuelo vuelo: vuelos){
+                if(vuelo.getCodigoVuelo() == codigoVuelo){
+                    if(vuelo.getEstadoVuelo()== EstadoVuelo.ENESPERA){
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean verificarVigencia(int noPasaporte, Date fecha){
+
+        ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
+        
+        if(pasaportes != null){
+            for(Pasaporte pasaporte: pasaportes){
+                if(pasaporte.getNoPasaporte() == noPasaporte){
+                    if(fecha.before(pasaporte.fechaVencimiento()) || fecha.equals(pasaporte.fechaVencimiento())){
+
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean verificarUbicacionPasaporte(int noPasaporte, String ciudadOrigen){
+
+        ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
+        ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
+        String pais = null;
+
+        if(aeroPuertos != null){
+            for(AeroPuerto aeropuerto: aeroPuertos){
+                if(ciudadOrigen.equals(aeropuerto.getCiudad())){
+                    pais = aeropuerto.getPais();
+                }
+            }
+        }
+        if(pais != null){
+            if(pasaportes != null){
+                for(Pasaporte pasaporte: pasaportes){
+                    if(pasaporte.getNoPasaporte() == noPasaporte && pais.equals(pasaporte.getPaisActual())){
+                        return true;
+                    }
                 }
             }
         }
@@ -156,6 +228,23 @@ public class Verificaciones {
                 }
             }
             
+        }
+        return false;
+    }
+
+    public static boolean verificarAsientoOcupado(Avion avion, String noAsiento){
+
+        for(int i =0; i< avion.getObjetos().length; i++){
+            for(int j =0; j < avion.getObjetos()[i].length; j++){
+
+                if(avion.getObjetos()[i][j] instanceof Asiento){
+                    if(noAsiento.equals(((Asiento)avion.getObjetos()[i][j]).getNoAsiento())){
+                        if(((Asiento)avion.getObjetos()[i][j]).getEstado() == EstadoAsiento.OCUPADO){
+                            return true;
+                        }
+                    }
+                }
+            }
         }
         return false;
     }

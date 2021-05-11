@@ -76,6 +76,7 @@ public class ArchivoPasaporte {
             for(Pasaporte pasaporte: pasaportes){
                 if(pasaporte.getNoPasaporte() == noPasaporte){
                     pasaporte.setFechaVencimiento(fechaRenovacion);
+                    System.out.println(pasaporte.fechaVencimiento());
                     agregarPasaporte(pasaporte);
                     break;
                 }

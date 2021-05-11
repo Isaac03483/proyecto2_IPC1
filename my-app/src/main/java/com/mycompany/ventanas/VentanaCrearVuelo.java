@@ -25,6 +25,8 @@ public class VentanaCrearVuelo extends JFrame{
     public VentanaCrearVuelo(Administrador admin){
         
         this.admin = admin;
+
+        this.setTitle(Constante.TITULO);
         this.setSize(600,400);
         this.setResizable(false);
         this.setLocationRelativeTo(null);

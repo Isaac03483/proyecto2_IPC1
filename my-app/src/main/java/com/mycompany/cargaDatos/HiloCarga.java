@@ -110,6 +110,7 @@ public class HiloCarga extends Thread{
     
                     case Constante.RESERVACION:
                     ArchivoReservacion.agregarReservacion(new Reservacion(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Long.parseLong(datos[2]),datos[3]));
+                    
                     break;
     
                     case Constante.TARJETA:

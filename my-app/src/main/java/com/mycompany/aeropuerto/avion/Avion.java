@@ -30,7 +30,7 @@ public class Avion implements Serializable{
         this.aeroPuertoActual=aeroPuertoActual;
         this.capacidadGasolina = capacidadGasolina;
         this.consumoPorMilla = consumoPorMilla;
-        this.codigoAvion = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(Integer.toString(this.codigoAvion), Constante.CARACTERES_CODIGO_AVION, false));
+        this.codigoAvion = Integer.parseInt(com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo("", Constante.CARACTERES_CODIGO_AVION, false));
         
     }
 
@@ -41,7 +41,7 @@ public class Avion implements Serializable{
         int noAsiento = 1;
         for(int i = 0; i < noFilas; i++){
             for(int j=0; j< noColumnas; j++){
-                if(j != columnaPasillo){
+                if(j != (columnaPasillo-1)){
                     objetos[i][j] = new Asiento("A"+noAsiento);
                     noAsiento++;
                 } else {
@@ -100,6 +100,10 @@ public class Avion implements Serializable{
     public String getAeroPuertoActual(){return this.aeroPuertoActual;}
 
     public int getCodigoAvion(){return this.codigoAvion;}
+
+    public Objeto[][] getObjetos(){return this.objetos;}
+
+    public void venderAsiento(int i, int j){((Asiento)this.objetos[i][j]).setEstado();}
 
     public int getCapacidadPasajeros(){return this.capacidadPasajeros;}
 

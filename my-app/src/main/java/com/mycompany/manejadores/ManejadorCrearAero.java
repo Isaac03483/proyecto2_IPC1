@@ -73,7 +73,7 @@ public class ManejadorCrearAero {
                     ArchivoAeroPuerto.guardarAeroPuerto(new AeroPuerto(nombreAeroPuerto, ciudad, pais));
                     JOptionPane.showMessageDialog(null, "Aeropuerto creado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ya existe un aeropuerto con ese nombre en ese país.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Ya existe un aeropuerto con ese nombre.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Uno de los campos se encuentra vacío.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
