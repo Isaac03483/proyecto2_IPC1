@@ -14,6 +14,7 @@ public class VentanaCarga extends JFrame{
     private JPanel panel;
     private JButton botonCargar, botonMenuAdministrador, botonMenuPrincipal;
     private JTextArea areaTexto;
+    private JScrollPane scroll;
     private ManejadorCarga manejador;
     private Administrador admin;
 
@@ -75,6 +76,10 @@ public class VentanaCarga extends JFrame{
         areaTexto = new JTextArea();
         areaTexto.setBounds(40, 100, 320, 200);
         panel.add(areaTexto);
+
+        scroll = new JScrollPane(areaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setBounds(40,100,320,200);
+        panel.add(scroll);
     }
 
     public JButton getBoton(){return this.botonCargar;}

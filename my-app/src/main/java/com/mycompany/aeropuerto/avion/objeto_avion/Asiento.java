@@ -12,7 +12,7 @@ public class Asiento implements Objeto{
         estado = EstadoAsiento.DISPONIBLE;
     }
 
-    public void setEstado(){this.estado = EstadoAsiento.OCUPADO;}
+    public void setEstado(EstadoAsiento estado){this.estado = estado;}
 
     public EstadoAsiento getEstado(){return this.estado;}
 

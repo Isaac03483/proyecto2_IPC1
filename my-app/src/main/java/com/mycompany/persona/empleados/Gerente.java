@@ -1,13 +1,14 @@
 package com.mycompany.persona.empleados;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-import com.mycompany.ventanas.VentanaGerente;
+import com.mycompany.constantes.Constante;
 import com.mycompany.ventanas.VentanaOperador;
 
 public class Gerente extends Empleado{
 
     private String nombreAeroLinea;
+    private JFrame ventana;
 
     public Gerente(String nombre, String apellido,String nombreAeroLinea) {
         super(nombre, apellido);
@@ -16,29 +17,36 @@ public class Gerente extends Empleado{
 
     public String getNombreAeroLinea(){return this.nombreAeroLinea;}
     
-    public void menuGerente(){
+    public void menuGerente(JFrame ventana){
+        this.ventana = ventana;
         int opcionMenu;
 
         try{
             do{
-                opcionMenu = Integer.parseInt(JOptionPane.showInputDialog(null, ".:Menu Gerente:."
+                opcionMenu = Integer.parseInt(JOptionPane.showInputDialog(null, ".:MENÚ GERENTE:."
                 +"\n0. Volver."
                 +"\n1. Ver reportes."
-                +"\n2. Operar Vuelo.", "AeroBalamDevs", JOptionPane.INFORMATION_MESSAGE));
+                +"\n2. Operar Vuelo.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
                 switch(opcionMenu){
                     case 0:
                     break;
                     case 1:
-                    VentanaGerente ventanaGerente = new VentanaGerente(this);
-                    ventanaGerente.setVisible(true);
+                    /*VentanaGerente ventanaGerente = new VentanaGerente(this);
+                    ventanaGerente.setVisible(true);*/
+                    this.ventana.dispose();
                     break;
                     case 2:
-                    VentanaOperador ventanaEmpleado = new VentanaOperador();
+                    VentanaOperador ventanaEmpleado = new VentanaOperador(this);
                     ventanaEmpleado.setVisible(true);
+                    this.ventana.dispose();
+                    break;
+                    default:
+                    JOptionPane.showMessageDialog(null, "Valor incorrecto.", Constante.TITULO, JOptionPane.ERROR_MESSAGE);
+                    break;
                 }
             } while(opcionMenu <0 || opcionMenu > 2);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Valor incorrecto.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Valor incorrecto.", Constante.TITULO, JOptionPane.ERROR_MESSAGE);
         }
     }
 }

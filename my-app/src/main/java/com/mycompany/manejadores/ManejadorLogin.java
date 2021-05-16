@@ -30,9 +30,11 @@ public class ManejadorLogin {
                 if(empleado instanceof Administrador){
                     ((Administrador)empleado).seleccionarAeroPuerto(menu);
                 } else if (empleado instanceof Gerente){
-                    ((Gerente)empleado).menuGerente();
+                    ((Gerente)empleado).menuGerente(menu);
                 } else if (empleado instanceof Operador){
-                    
+                    VentanaOperador operador = new VentanaOperador(empleado);
+                    operador.setVisible(true);
+                    menu.dispose();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario incorrecto.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);

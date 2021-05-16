@@ -104,7 +104,7 @@ public class VentanaCrearEmpleado extends JFrame{
         panel.add(etiquetaAeroLinea);
         etiquetaAeroLinea.setFont(new Font("Basic", Font.BOLD, 14));
         etiquetaAeroLinea.setForeground(Color.BLACK);
-        etiquetaAeroLinea.setVisible(true);
+        etiquetaAeroLinea.setVisible(false);
     }
 
     private void colocarTexto(){
@@ -145,21 +145,24 @@ public class VentanaCrearEmpleado extends JFrame{
         grupo.add(radioAdmin);
         grupo.add(radioGerente);
         grupo.add(radioOperador);
+
+        oyenteEmpleado();
     }
 
     private void colocarCombo(){
         
         combo = new JComboBox<>();
-        combo.setBounds(150, 290, 150, 20);
+        combo.setBounds(150, 290, 230, 20);
         panel.add(combo);
 
         agregarAeroLineas();
+        combo.setVisible(false);
     }
 
     private void colocarBoton(){
 
         botonCrear = new JButton("Crear");
-        botonCrear.setBounds(410, 120, 100, 30);
+        botonCrear.setBounds(430, 120, 100, 30);
         panel.add(botonCrear);
         botonCrear.setFont(new Font("Basic", Font.BOLD, 14));
         botonCrear.setForeground(Color.BLACK);
@@ -167,7 +170,7 @@ public class VentanaCrearEmpleado extends JFrame{
         oyenteCrear();
 
         botonMenuAdmin = new JButton("Administrar");
-        botonMenuAdmin.setBounds(410, 170, 130, 30);
+        botonMenuAdmin.setBounds(430, 170, 130, 30);
         panel.add(botonMenuAdmin);
         botonMenuAdmin.setFont(new Font("Basic", Font.BOLD, 14));
         botonMenuAdmin.setForeground(Color.BLACK);
@@ -175,7 +178,7 @@ public class VentanaCrearEmpleado extends JFrame{
         oyenteAdministrar();
 
         botonMenuPrincipal = new JButton("Principal");
-        botonMenuPrincipal.setBounds(410, 220, 130, 30);
+        botonMenuPrincipal.setBounds(430, 220, 130, 30);
         panel.add(botonMenuPrincipal);
         botonMenuPrincipal.setFont(new Font("Basic", Font.BOLD, 14));
         botonMenuPrincipal.setForeground(Color.BLACK);
@@ -206,6 +209,30 @@ public class VentanaCrearEmpleado extends JFrame{
                 manejador.accionCrear();
             }
         });
+    }
+
+    private void oyenteEmpleado(){
+
+        ActionListener oyenteAccion = new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+                if(radioAdmin.isSelected()){
+                    etiquetaAeroLinea.setVisible(false);
+                    combo.setVisible(false);
+                } else {
+                    etiquetaAeroLinea.setVisible(true);
+                    combo.setVisible(true);
+                }
+                
+            }
+
+        };
+
+        radioAdmin.addActionListener(oyenteAccion);
+        radioGerente.addActionListener(oyenteAccion);
+        radioOperador.addActionListener(oyenteAccion);
     }
 
     private void agregarAeroLineas(){

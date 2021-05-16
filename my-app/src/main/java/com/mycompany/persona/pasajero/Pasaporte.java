@@ -84,12 +84,13 @@ public class Pasaporte implements Serializable{
     }
 
     public void generarContrasena(){
-        if(this.contrasena == ""){
-            this.contrasena = com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(this.contrasena, Constante.CARACTERES_CONTRASENA, true);
-        }
+        this.contrasena = com.mycompany.generadorCodigos.GenerarCodigo.generarCodigo(this.contrasena, Constante.CARACTERES_CONTRASENA, true);
+        
     }
 
     public void setFechaVencimiento(Date fechaVencimiento){this.fechaVencimiento = fechaVencimiento;}
+
+    public void setPaisActual(String pais){this.paisActual = pais;}
 
     public int getNoPasaporte(){return this.noPasaporte;}
 

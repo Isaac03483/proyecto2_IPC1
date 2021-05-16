@@ -46,6 +46,38 @@ public class Verificaciones {
         
     }
 
+    public static boolean verificarVuelo(int codigoVuelo){
+        ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
+
+        if(vuelos != null){
+
+            for(Vuelo vuelo: vuelos){
+                if(vuelo.getCodigoVuelo() == codigoVuelo){
+                    if(vuelo.getEstadoVuelo() == EstadoVuelo.ENESPERA){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean verificarTarjeta(long noTarjeta){
+
+        ArrayList<Tarjeta> tarjetas = ArchivoTarjeta.leerTarjeta();
+
+        if(tarjetas != null){
+
+            for(Tarjeta tarjeta: tarjetas){
+                if(tarjeta.getNoTarjeta() == noTarjeta){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static boolean GerenteConAerolinea(String nombreAeroLinea){
 
         ArrayList<Empleado> gerentes = ArchivoEmpleado.leerEmpleados();
@@ -131,7 +163,7 @@ public class Verificaciones {
         return false;
     }
 
-    public static boolean verificarPasaporte(long noPasaporte){
+    public static boolean verificarPasaporte(int noPasaporte){
 
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
         
@@ -243,6 +275,19 @@ public class Verificaciones {
                             return true;
                         }
                     }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean verificarConstrasena(int noPasaporte, String contrasena){
+        ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
+
+        if(pasaportes != null){
+            for(Pasaporte pasaporte: pasaportes){
+                if(pasaporte.getNoPasaporte() == noPasaporte && pasaporte.getContrasena().equals(contrasena)){
+                    return true;
                 }
             }
         }

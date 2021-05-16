@@ -29,12 +29,23 @@ public class ManejadorVuelos {
                 String noAsiento = this.ventana.getTexto().getText();
                 if(!noAsiento.equals("")){
                     if(!Verificaciones.verificarAsientoOcupado(this.ventana.getAvion(), noAsiento)){
-                        tarjetaUsuario.setDinero(this.ventana.getVuelo().getPrecioBoleto());
-                        ArchivoReservacion.agregarReservacion(new Reservacion(this.ventana.getNoPasaporte(), this.ventana.getVuelo().getCodigoVuelo(), tarjetaUsuario.getNoTarjeta(), noAsiento));
-                        System.out.println(noAsiento);
+                        Pasaporte pasaporteUsuario = obtenerPasaporte(this.ventana.getNoPasaporte());
+                        if(pasaporteUsuario != null){
+
+                            tarjetaUsuario.setDinero(this.ventana.getVuelo().getPrecioBoleto());
+                            ArchivoTarjeta.agregarTarjeta(tarjetaUsuario);
+                            ArchivoReservacion.agregarReservacion(new Reservacion(this.ventana.getNoPasaporte(), this.ventana.getVuelo().getCodigoVuelo(), tarjetaUsuario.getNoTarjeta(), noAsiento));
+                            System.out.println(noAsiento);
+
+                            JOptionPane.showMessageDialog(null, "Boleto comprado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                            if(pasaporteUsuario.getContrasena().equals("")){
+                                pasaporteUsuario.generarContrasena();
+                                JOptionPane.showMessageDialog(null, "Tu contraseña por primera compra es: \n"+pasaporteUsuario.getContrasena());
+                                ArchivoPasaporte.agregarPasaporte(pasaporteUsuario);
+                            }
+                            this.ventana.dispose();
+                        }
                                 
-                        JOptionPane.showMessageDialog(null, "Boleto comprado con éxito.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
-                        this.ventana.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Asiento ocupado.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
 
@@ -47,6 +58,20 @@ public class ManejadorVuelos {
             System.err.println("No se ha encontrado la tarjeta.");
     
         }
+    }
+
+    private Pasaporte obtenerPasaporte(int noPasaporte){
+
+        ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
+        if(pasaportes != null){
+
+            for(Pasaporte pasaporte: pasaportes){
+                if(pasaporte.getNoPasaporte() == noPasaporte){
+                    return pasaporte;
+                }
+            }
+        }
+        return null;
     }
 
     private Tarjeta obtenerTarjeta(int noPasaporte){

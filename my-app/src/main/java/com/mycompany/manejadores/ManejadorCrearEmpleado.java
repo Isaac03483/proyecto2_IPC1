@@ -36,6 +36,7 @@ public class ManejadorCrearEmpleado {
     
                 if(Verificaciones.GerenteConAerolinea(nombreAeroLinea)){
                     JOptionPane.showMessageDialog(null, "Esta aeroLinea ya cuenta con un Gerente.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                    empleado = null;
                 } else {
                     empleado = new Gerente(nombre, apellido, nombreAeroLinea);
                     
@@ -48,9 +49,10 @@ public class ManejadorCrearEmpleado {
             if(empleado != null){
                 ArchivoEmpleado.guardarEmpleado(empleado);
                 JOptionPane.showMessageDialog(null, "Empleado creado con éxito."
-                +"\nNombre usuario: "+empleado.getUsuario()
+                +"\n\nNombre usuario: "+empleado.getUsuario()
                 +"\nContraseña: "+empleado.getContrasena()
-                +"\nGuarda estos datos y no los compartas a nadie.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                +"\n\nGuarda estos datos y no los compartas a nadie.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+                empleado = null;
             }
         } else {
             

@@ -40,9 +40,9 @@ public class Administrador extends Empleado{
                 }
             }while(opcionMenu < 0 || opcionMenu > this.aeroPuertos.length);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", Constante.TITULO, JOptionPane.ERROR_MESSAGE);
         }catch(ArrayIndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null, "No existe ese aeropuerto.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No existe ese aeropuerto.", Constante.TITULO, JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -81,6 +81,9 @@ public class Administrador extends Empleado{
                     case 4:
                     break;
                     case 5:
+                    VentanaOperador operador = new VentanaOperador(this);
+                    operador.setVisible(true);
+                    this.menu.dispose();
                     break;
                     case 6:
                     VentanaCrearVuelo vuelo = new VentanaCrearVuelo(this);
@@ -93,12 +96,12 @@ public class Administrador extends Empleado{
                     this.menu.dispose();
                     break;
                     default:
-                    JOptionPane.showMessageDialog(null, "La opción seleccionada es incorrecta.", "AeroBalamDevs", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "La opción seleccionada es incorrecta.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
             }while(opcionMenu < 0 || opcionMenu > 7);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", "AeroBalamDevs", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo puede ingresar números.", Constante.TITULO, JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -115,10 +118,9 @@ public class Administrador extends Empleado{
                 listaAeroPuertos+=(i+1)+". "+this.aeroPuertos[i]+"\n";
                 i++;
             }
-            return listaAeroPuertos;
         }
         
-        return null;
+        return listaAeroPuertos;
     }
     
     

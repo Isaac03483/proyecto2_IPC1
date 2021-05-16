@@ -65,9 +65,11 @@ public class VentanaVuelos extends JDialog{
         panel.add(etiquetaTitulo);
         etiquetaTitulo.setFont(new Font("Basic", Font.BOLD, 13));
         etiquetaTitulo.setForeground(Color.BLACK);
-        etiquetaIngresar = new JLabel("Ingrese el no. asiento:");
-        etiquetaIngresar.setBounds(30, 60, 170, 20);
-        panel.add(etiquetaIngresar);
+        if(this.empleado == null){
+            etiquetaIngresar = new JLabel("Ingrese el no. asiento:");
+            panel.add(etiquetaIngresar);
+            etiquetaIngresar.setBounds(30, 60, 170, 20);
+        }
     }
 
     private void colocarAsientos(){
@@ -77,7 +79,7 @@ public class VentanaVuelos extends JDialog{
         if(avion != null){
             int x = 40, y = 100;
             objetos = new JButton[this.avion.getObjetos().length][this.avion.getObjetos()[0].length];
-            System.out.println(this.avion.getObjetos().length+"    "+this.avion.getObjetos()[0].length);
+            //System.out.println(this.avion.getObjetos().length+"    "+this.avion.getObjetos()[0].length);
             for(int i = 0; i < objetos.length; i++){
                 for(int j= 0; j < objetos[0].length; j++){
 
@@ -85,7 +87,7 @@ public class VentanaVuelos extends JDialog{
 
                         objetos[i][j] = new JButton(((Asiento)this.avion.getObjetos()[i][j]).getNoAsiento());
                         objetos[i][j].setBounds(x, y, 60, 20);
-                        System.out.println(((Asiento)this.avion.getObjetos()[i][j]).getNoAsiento());
+                        //System.out.println(((Asiento)this.avion.getObjetos()[i][j]).getNoAsiento());
                         if(((Asiento)this.avion.getObjetos()[i][j]).getEstado() == EstadoAsiento.DISPONIBLE){
 
                             objetos[i][j].setForeground(Color.BLUE);
@@ -114,18 +116,22 @@ public class VentanaVuelos extends JDialog{
             }
         }
 
-        botonCompra = new JButton("Comprar");
-        botonCompra.setBounds(350, 60, 100, 20);
-        panel.add(botonCompra);
-        oyenteSeleccion();
+        if(this.empleado == null){
+            botonCompra = new JButton("Comprar");
+            botonCompra.setBounds(350, 60, 100, 20);
+            panel.add(botonCompra);
+            oyenteSeleccion();
+        }
 
     }
 
     private void colocarTexto(){
 
-        textoAsiento = new JTextField();
-        textoAsiento.setBounds(230, 60, 100, 20);
-        panel.add(textoAsiento);
+        if(this.empleado == null){
+            textoAsiento = new JTextField();
+            panel.add(textoAsiento);
+            textoAsiento.setBounds(230, 60, 100, 20);
+        }
     }
 
     private void oyenteSeleccion(){

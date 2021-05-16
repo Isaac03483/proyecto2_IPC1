@@ -4,17 +4,22 @@ import java.io.Serializable;
 
 import com.mycompany.aeropuerto.avion.objeto_avion.*;
 import com.mycompany.constantes.*;
+import com.mycompany.enums.EstadoAsiento;
 
 public class Avion implements Serializable{
 
     private String nombreAeroLinea;
     private String aeroPuertoActual;
     private int codigoAvion;
+    private double gasolinaConsumida;
     private int capacidadPasajeros;
     private double capacidadGasolina;
     private double consumoPorMilla;
     private Objeto[][] objetos;
 
+    {
+        this.gasolinaConsumida =0;
+    }
     /**
      * Constructor creado para crear más aviones desde el programa
      * @param nombreAeroLinea
@@ -101,9 +106,13 @@ public class Avion implements Serializable{
 
     public int getCodigoAvion(){return this.codigoAvion;}
 
+    public double getGasolinaConsumida(){return this.gasolinaConsumida;}
+
     public Objeto[][] getObjetos(){return this.objetos;}
 
-    public void venderAsiento(int i, int j){((Asiento)this.objetos[i][j]).setEstado();}
+    public void setGasolinaConsumida(double gasolina){this.gasolinaConsumida+=gasolina;}
+
+    public void venderAsiento(int i, int j, EstadoAsiento estado){((Asiento)this.objetos[i][j]).setEstado(estado);}
 
     public int getCapacidadPasajeros(){return this.capacidadPasajeros;}
 

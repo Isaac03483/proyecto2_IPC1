@@ -65,27 +65,51 @@ public class HiloCarga extends Thread{
                         ArchivoAeroPuerto.guardarAeroPuerto(new AeroPuerto(datos[0], datos[1], datos[2]));
                     } else {
                         System.err.println("Ya existe ese aeropuerto en dicho país.");
+                        this.ventana.getArea().append("no se ha podido cargar el aeropuerto ya que ya existe.\n");
                     }
                     break;
     
                     case Constante.AEROLINEA:
-                    if(!Verificaciones.aeroLineaExistente(datos[0], datos[1])){
-                        ArchivoAeroLinea.guardarAeroLinea(new AeroLinea(datos[0], datos[1]));
+                    if(Verificaciones.aeroPuertoExistente(datos[0])){
+                        if(!Verificaciones.aeroLineaExistente(datos[0], datos[1])){
+                            ArchivoAeroLinea.guardarAeroLinea(new AeroLinea(datos[0], datos[1]));
+                        } else {
+                            System.err.println("Ya hay una aerolinea con ese nombre.");
+                            this.ventana.getArea().append("No se ha podido cargar la aerolinea ya que el aeropuerto ya cuenta con una con el mismo nombre.\n");
+                        }
                     } else {
-                        System.err.println("Ya hay una aerolinea con ese nombre.");
+
+                        System.err.println("No se encontró el aeropuerto.");
+                        this.ventana.getArea().append("No se pudo cargar la aerolinea ya que no se ha encontrado el aeropuerto.\n");
+
                     }
                     break;
     
                     case Constante.AVION:
-                    if(Verificaciones.aeroLineaExistente(datos[1], datos[0])){
-                        ArchivoAvion.agregarAvion(new Avion(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5])));
+                    if(Verificaciones.aeroPuertoExistente(datos[1])){
+
+                        if(Verificaciones.aeroLineaExistente(datos[1], datos[0])){
+                            ArchivoAvion.agregarAvion(new Avion(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5])));
+                        } else {
+                            System.err.println("Error, no se encontró la aerolinea.");
+                            this.ventana.getArea().append("No se pudo cargar el avión ya que no se encontró la aerolinea.\n");
+                        }
                     } else {
-                        System.err.println("Error, no se encontró la aerolinea o aeropuerto seleccionados.");
+
+                        System.err.println("Error, no se encontró el aeropuerto.");
+                        this.ventana.getArea().append("No se pudo cargar el avión ya que no se encontró el aeropuerto.\n");
                     }
                     break;
                     
                     case Constante.DISTANCIA:
-                    ArchivoDistancia.agregarDistancia(new Distancia(datos[0], datos[1], Double.parseDouble(datos[2])));
+                    if(Verificaciones.aeroPuertoExistente(datos[0]) && Verificaciones.aeroPuertoExistente(datos[1])){
+                        ArchivoDistancia.agregarDistancia(new Distancia(datos[0], datos[1], Double.parseDouble(datos[2])));
+                    } else {
+
+                        System.err.println("No se encontró uno de los aeropuertos.");
+                        this.ventana.getArea().append("No se pudo cargar la distancia ya que no se encontró uno de los aeropuertos.\n");
+
+                    }
                     break;
     
                     case  Constante.PASAPORTE:
@@ -93,9 +117,15 @@ public class HiloCarga extends Thread{
                     Date fechaVencimiento = formatoFecha(datos[8]);
                     Date fechaEmision = formatoFecha(datos[9]);
                     if( fechaNacimiento != null && fechaVencimiento != null && fechaEmision !=null){
-                        ArchivoPasaporte.agregarPasaporte(new Pasaporte(Integer.parseInt(datos[0]), datos[1], fechaNacimiento, datos[3],EstadoCivil.valueOf(datos[4]), datos[5], datos[6], Sexo.valueOf(datos[7]), fechaVencimiento, fechaEmision, datos[10], Double.parseDouble(datos[11])));
+                        if(!Verificaciones.verificarPasaporte(Integer.parseInt(datos[0]))){
+                            ArchivoPasaporte.agregarPasaporte(new Pasaporte(Integer.parseInt(datos[0]), datos[1], fechaNacimiento, datos[3],EstadoCivil.valueOf(datos[4]), datos[5], datos[6], Sexo.valueOf(datos[7]), fechaVencimiento, fechaEmision, datos[10], Double.parseDouble(datos[11])));
+                        } else {
+                            System.err.println("Error al cargar pasaporte ya que ya existe.");
+                            this.ventana.getArea().append("Error al cargar pasaporte ya que ya existe.\n");
+                        }
                     } else {
-                        System.out.println("Error al cargar pasaporte ya que no cuenta con el formato correcto: "+auxiliar);
+                        System.err.println("Error al cargar pasaporte ya que no cuenta con el formato correcto");
+                        this.ventana.getArea().append("Error al cargar pasaporte ya que no cuenta con el formato correcto.\n");
                     }
                     break;
     
@@ -104,20 +134,61 @@ public class HiloCarga extends Thread{
                     if(fechaRenovacion != null){
                         if(Verificaciones.verificarPasaporte(Integer.parseInt(datos[0]))){
                             ArchivoPasaporte.renovacionPasaporte(Integer.parseInt(datos[0]), fechaRenovacion);
+                        } else {
+
+                            System.err.println("No se encontró el pasaporte.");
+                            this.ventana.getArea().append("No se pudo cargar la renovación ya que no se ha encontrado el pasaporte.\n");
+
                         }
+                    } else {
+                        System.err.println("formato de fecha incorrecto.");
+                        this.ventana.getArea().append("No se pudo cargar la renovación ya que la fecha no cuenta con el formato correcto.\n");
+
                     }
                     break;
     
                     case Constante.RESERVACION:
-                    ArchivoReservacion.agregarReservacion(new Reservacion(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Long.parseLong(datos[2]),datos[3]));
+                    if(Verificaciones.verificarPasaporte(Integer.parseInt(datos[0]))){
+                        if(Verificaciones.verificarVuelo(Integer.parseInt(datos[1]))){
+                            if(Verificaciones.verificarTarjeta(Long.parseLong(datos[2]))){
+
+                                if(!Verificaciones.verificarPasaporteVuelo(Integer.parseInt(datos[0]))){
+                                    ArchivoReservacion.agregarReservacion(new Reservacion(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Long.parseLong(datos[2]),datos[3]));
+                                } else {
+                                    System.err.println("Este pasaporte ya cuenta con un vuelo en proceso.");
+                                    this.ventana.getArea().append("No se pudo cargar la reservación ya que este pasaporte tiene un vuelo en proceso.\n");
+    
+                                }
+                            } else {
+
+                                System.err.println("Este pasaporte no posee una tarjeta.");
+                                this.ventana.getArea().append("No se pudo cargar la reservación ya que este pasaporte no cuenta con una tarjeta.\n");
+                            }
+                        } else {
+                            System.err.println("vuelo no encontrado.");
+                            this.ventana.getArea().append("No se pudo cargar la reservación ya que no se ha encontrado el vuelo.\n");
+
+                        }
+                    } else {
+                        System.err.println("Pasaporte no encontrado.");
+                        this.ventana.getArea().append("No se pudo cargar la reservación ya que no se ha encotnrado el pasaporte.\n");
+
+                    }
                     
                     break;
     
                     case Constante.TARJETA:
                     if(Verificaciones.verificarPasaporte(Integer.parseInt(datos[1]))){
-                        ArchivoTarjeta.agregarTarjeta(new Tarjeta(Long.parseLong(datos[0]), Integer.parseInt(datos[1]), Double.parseDouble(datos[2]), Integer.parseInt(datos[3])));
+                        if(!Verificaciones.verificarTarjeta(Long.parseLong(datos[0]))){
+                            ArchivoTarjeta.agregarTarjeta(new Tarjeta(Long.parseLong(datos[0]), Integer.parseInt(datos[1]), Double.parseDouble(datos[2]), Integer.parseInt(datos[3])));
+
+                        } else {
+                            System.err.println("Esta tarjeta ya existe.");
+                            this.ventana.getArea().append("No se pudo cargar la tarjeta ya que ya existe.\n");
+                        }
                     } else {
                         System.err.println("No se encontró el pasaporte.");
+                        this.ventana.getArea().append("No se pudo cargar la reservación ya que no se ha encotnrado el pasaporte.\n");
                     }
                     break;
     
@@ -131,15 +202,23 @@ public class HiloCarga extends Thread{
                                         ArchivoVuelo.agregarVuelo(new Vuelo(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], datos[3], Double.parseDouble(datos[4]), fechaSalida));
                                     } else {
                                         System.err.println("La distancia es mayor a la capacidad de gasolina que posee el avion.");
+                                        this.ventana.getArea().append("No se pudo cargar el vuelo ya que la distancia es mayor a la capacidad de gasolina que posee el avión.\n");
+
                                     }
                                 } else {
                                     System.err.println("No se ha encontrado la distancia.");
+                                    this.ventana.getArea().append("No se pudo cargar el vuelo ya que no se ha encontrado la distancia.\n");
+
                                 }
                             } else {
                                 System.err.println("Este avión ya tiene un vuelo en proceso.");
+                                this.ventana.getArea().append("No se pudo cargar el vuelo ya que el avión seleccionado tiene un vuelo en proceso.\n");
+
                             }
                         } else {
                             System.err.println("No se ha encontrado el avion.");
+                            this.ventana.getArea().append("No se pudo cargar el vuelo ya que no se ha encontrado el avión.\n");
+
                         }
                     }
                     break;
@@ -152,7 +231,7 @@ public class HiloCarga extends Thread{
                 System.err.println("Error en el ingreso de datos en el campo de tipo número en la línea: "+auxiliar);
                 e.printStackTrace();
             }
-            this.ventana.getArea().append(auxiliarDos+"\n");
+            this.ventana.getArea().append(auxiliarDos+"\n\n");
             try{
                 Thread.sleep(500);
             } catch(InterruptedException e){

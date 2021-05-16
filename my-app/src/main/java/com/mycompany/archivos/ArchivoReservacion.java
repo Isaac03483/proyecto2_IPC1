@@ -3,10 +3,11 @@ package com.mycompany.archivos;
 import java.io.*;
 import java.util.*;
 
-import com.mycompany.aeropuerto.Vuelo;
+import com.mycompany.aeropuerto.*;
 import com.mycompany.aeropuerto.avion.Avion;
 import com.mycompany.aeropuerto.avion.objeto_avion.Asiento;
 import com.mycompany.constantes.Constante;
+import com.mycompany.enums.EstadoAsiento;
 import com.mycompany.persona.pasajero.Reservacion;
 
 public class ArchivoReservacion {
@@ -22,6 +23,7 @@ public class ArchivoReservacion {
             
             ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
             ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
+
             Avion avionSelecciando=null;
             int codigoAvion=0;
             if(vuelos != null){
@@ -46,7 +48,7 @@ public class ArchivoReservacion {
                     for(int j = 0; j < avionSelecciando.getObjetos()[i].length; j++){
                         if(avionSelecciando.getObjetos()[i][j] instanceof Asiento){
                             if(((Asiento)avionSelecciando.getObjetos()[i][j]).getNoAsiento().equals(reservacion.getNoAsiento())){
-                                ((Asiento)avionSelecciando.getObjetos()[i][j]).setEstado();
+                                avionSelecciando.venderAsiento(i, j, EstadoAsiento.OCUPADO);
                                 ArchivoAvion.agregarAvion(avionSelecciando);
                                 return;
                             }

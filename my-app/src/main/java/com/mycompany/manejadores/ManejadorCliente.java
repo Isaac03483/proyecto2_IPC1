@@ -9,6 +9,8 @@ import com.mycompany.aeropuerto.avion.Avion;
 import com.mycompany.archivos.*;
 import com.mycompany.cargaDatos.Verificaciones;
 import com.mycompany.constantes.Constante;
+import com.mycompany.enums.EstadoVuelo;
+import com.mycompany.persona.pasajero.Reservacion;
 import com.mycompany.ventanas.*;
 
 public class ManejadorCliente {
@@ -73,8 +75,12 @@ public class ManejadorCliente {
                                         JOptionPane.showMessageDialog(null, "Debe ingresar un valor numérico.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
     
                                     }
+                                } else {
+                                    System.err.println("No existe la aerolinea en ambos aeropuertos.");
                                 }
                             }
+                        } else {
+                            System.err.println("El pasaporte no se encuentra vigente para la fecha del vuelo.");
                         }
                         
                     } else {
@@ -154,6 +160,44 @@ public class ManejadorCliente {
 
     public void accionInformacion(){
 
+        try{
+            int noPasaporte = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número de pasaporte:", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
+            String contrasena = JOptionPane.showInputDialog(null, "Ingrese la contraseña:", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+            if(Verificaciones.verificarPasaporte(noPasaporte) && Verificaciones.verificarConstrasena(noPasaporte, contrasena)){
+                JOptionPane.showMessageDialog(null, "INFORMACIÓN DEL PASAPORTE:"
+                +"\n"+retornarInformacion(noPasaporte), Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, puede que haya ingresado un dato erróneo.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch(NumberFormatException e){
+
+        }
+    }
+
+
+    private String retornarInformacion(int noPasaporte){
+
+        ArrayList<Reservacion> reservaciones = ArchivoReservacion.leerReservacion();
+        ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
+
+        String informacion ="";
+
+        if(reservaciones != null && vuelos != null){
+
+            for(Reservacion reservacion: reservaciones){
+                if(noPasaporte == reservacion.getNoPasaporte()){
+                    for(Vuelo vuelo: vuelos){
+                        if(vuelo.getCodigoVuelo() == reservacion.getCodigoVuelo()){
+                            if(vuelo.getEstadoVuelo() == EstadoVuelo.ENESPERA){
+                                informacion +="Código de vuelo: "+reservacion.getCodigoVuelo()
+                                +"\nNúmero de asiento: "+reservacion.getNoAsiento();
+                            }
+                        }
+                    }                    
+                }
+            }
+        }
+        return informacion;
     }
 
     public void accionVolver(){

@@ -28,5 +28,5 @@ public class AeroLinea implements Serializable{
     public double getGanancias(){return this.ganancias;}
 
     @Override
-    public String toString(){return this.nombreAeroLinea;}
+    public String toString(){return this.nombreAeroLinea+" - "+this.nombreAeroPuerto;}
 }
