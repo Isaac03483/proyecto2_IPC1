@@ -8,6 +8,10 @@ import com.mycompany.constantes.Constante;
 public class ArchivoAeroPuerto {
     
 
+    /**
+     * método estático que guarda el aeropuerto enviado en un archivo binario
+     * @param aeropuerto
+     */
     public static void guardarAeroPuerto(AeroPuerto aeropuerto){
 
         
@@ -27,6 +31,10 @@ public class ArchivoAeroPuerto {
         
     }
 
+    /**
+     * método estático que almacena todos los archivos binarios de los aeropuertos en un array y los retorna
+     * @return
+     */
     public static ArrayList<AeroPuerto> leerAeroPuertos(){
 
         ArrayList<AeroPuerto> aeroPuertos = new ArrayList<>();

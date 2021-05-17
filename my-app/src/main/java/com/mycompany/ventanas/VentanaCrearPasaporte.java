@@ -21,6 +21,11 @@ public class VentanaCrearPasaporte extends JDialog{
     private ButtonGroup grupoEstado, grupoSexo;
     private ManejadorCrearPasaporte manejador;
 
+    /**
+     * constructor
+     * @param padre
+     * @param modal
+     */
     public VentanaCrearPasaporte(JFrame padre, boolean modal){
 
         super(padre, modal);
@@ -32,6 +37,9 @@ public class VentanaCrearPasaporte extends JDialog{
         manejador = new ManejadorCrearPasaporte(this);
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -42,6 +50,9 @@ public class VentanaCrearPasaporte extends JDialog{
         colocarBoton();
     }
 
+    /**
+     * coloca panel
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -50,6 +61,9 @@ public class VentanaCrearPasaporte extends JDialog{
         panel.setLayout(null);
     }
 
+    /**
+     * coloca etiquetas
+     */
     private void colocarEtiquetas(){
 
         etiquetaImagen = new JLabel();
@@ -125,6 +139,9 @@ public class VentanaCrearPasaporte extends JDialog{
 
     }
 
+    /**
+     * coloca textField
+     */
     private void colocarTextos(){
 
         textoNombre = new JTextField();
@@ -153,6 +170,9 @@ public class VentanaCrearPasaporte extends JDialog{
 
     }
 
+    /**
+     * coloca RadioButton
+     */
     private void colocarRadio(){
 
         radioCasado = new JRadioButton("CASADO.");
@@ -204,6 +224,9 @@ public class VentanaCrearPasaporte extends JDialog{
         grupoSexo.add(radioOtro);
     }
 
+    /**
+     * coloca comboBox
+     */
     private void colocarCombo(){
 
         comboPaisActual = new JComboBox<>();
@@ -213,6 +236,9 @@ public class VentanaCrearPasaporte extends JDialog{
         agregarPaises();
     }
 
+    /**
+     * coloca botones
+     */
     private void colocarBoton(){
 
         botonCrear = new JButton("CREAR");
@@ -221,6 +247,9 @@ public class VentanaCrearPasaporte extends JDialog{
         oyenteBoton();
     }
 
+    /**
+     * agrega paises al comboBox
+     */
     private void agregarPaises(){
 
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
@@ -234,6 +263,9 @@ public class VentanaCrearPasaporte extends JDialog{
 
     }
 
+    /**
+     * oyente botonCrear
+     */
     private void oyenteBoton(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -245,30 +277,81 @@ public class VentanaCrearPasaporte extends JDialog{
         });
     }
 
+    /**
+     * retorna JComboBox
+     * @return
+     */
     public JComboBox<String> getComboPais(){return this.comboPaisActual;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoNombre(){return this.textoNombre;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoApellido(){return this.textoApellido;}
 
+    /**
+     * retorna JTextField
+     */
     public JTextField getTextoNacimiento(){return this.textoFechaNacimiento;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoNacionalidad(){return this.textoNacionalidad;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoEmision(){return this.textoFechaEmision;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoVencimiento(){return this.textoFechaVencimiento;}
 
+    /**
+     * retorna JRadioButton
+     * @return
+     */
     public JRadioButton getRadioHombre(){return this.radioHombre;}
 
+    /**
+     * retorna JRadioButton
+     * @return
+     */
     public JRadioButton getRadioMujer(){return this.radioMujer;}
 
+    /**
+     * retorna JRadioButton
+     * @return
+     */
     public JRadioButton getRadioOtro(){return this.radioOtro;}
 
+    /**
+     * retorna JRadioButton
+     * @return
+     */
     public JRadioButton getRadioCasado(){return this.radioCasado;}
 
+    /**
+     * retorna JRadioButton
+     * @return
+     */
     public JRadioButton getRadioDivorciado(){return this.radioDivorciado;}
 
+    /**
+     * retorna JRadioButton
+     * @return
+     */
     public JRadioButton getRadioSoltero(){return this.radioSoltero;}
 
 }

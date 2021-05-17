@@ -13,11 +13,19 @@ public class ManejadorLogin {
     
     private VentanaLog ventana;
 
+    /**
+     * constructor para ventana de log
+     * @param ventana
+     */
     public ManejadorLogin(VentanaLog ventana){
         this.ventana = ventana;
 
     }
 
+    /**
+     * métdo que verifica los datos ingresados y busca al empleado
+     * @param menu
+     */
     public void verificarUsuario(Menu menu){
 
         ArrayList<Empleado> empleados = ArchivoEmpleado.leerEmpleados();
@@ -42,6 +50,13 @@ public class ManejadorLogin {
         }
     }
 
+    /**
+     * método que verifica que exista el empleado
+     * @param empleados
+     * @param contrasena
+     * @param usuario
+     * @return
+     */
     private Empleado verificarExistencia(ArrayList<Empleado> empleados, String contrasena, String usuario){
 
         if(empleados != null){

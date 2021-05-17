@@ -22,12 +22,28 @@ public class Distancia implements Serializable{
 
     }
 
+    /**
+     * retorna el nombre  del aeropuerto de origen (de inicio)
+     * @return
+     */
     public String getAeroPuertoOrigen(){return this.nombreAeroPuertoOrigen;}
 
+    /**
+     * 
+     retorna el nombre del aeropuerto de destino (de llegada)
+     * @return
+     */
     public String getAeroPuertoDestino(){return this.nombreAeroPuertoDestino;}
 
+    /**
+     * retorna la cantidad de millas que hay de distancia
+     * @return
+     */
     public double getCantidadMillas(){return this.cantidadMillas;}
 
+    /**
+     * método sobreescrito de la clase object
+     */
     @Override
     public String toString(){return this.nombreAeroPuertoOrigen+" -> "+this.nombreAeroPuertoDestino;}
     

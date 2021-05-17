@@ -13,6 +13,9 @@ public class Menu extends JFrame{
     private JPanel panel;
     private ManejadorMenu manejador;
 
+    /**
+     * constructor
+     */
     public Menu(){
 
         this.setTitle(Constante.TITULO);
@@ -25,6 +28,9 @@ public class Menu extends JFrame{
         this.manejador = new ManejadorMenu(this);
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -33,6 +39,9 @@ public class Menu extends JFrame{
 
     }
 
+    /**
+     * coloca panel
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -42,6 +51,9 @@ public class Menu extends JFrame{
         panel.setLayout(null);
     }
 
+    /**
+     * coloca etiquetas
+     */
     private void colocarEtiquetas(){
 
         etiquetaMenu = new JLabel("Menú Principal", SwingConstants.CENTER);
@@ -64,6 +76,9 @@ public class Menu extends JFrame{
 
     }
 
+    /**
+     * coloca botones
+     */
     private void colocarBotones(){
 
         botonClientes = new JButton("Clientes");
@@ -81,6 +96,9 @@ public class Menu extends JFrame{
         oyenteEmpleado();
     }
 
+    /**
+     * oyente botonClientes
+     */
     private void oyenteClientes(){
 
         botonClientes.addActionListener(new ActionListener(){
@@ -91,6 +109,9 @@ public class Menu extends JFrame{
         });
     }
 
+    /**
+     * oyente botonEmpresa
+     */
     private void oyenteEmpleado(){
 
         botonEmpresa.addActionListener(new ActionListener(){
@@ -102,7 +123,15 @@ public class Menu extends JFrame{
         });
     }
 
+    /**
+     * retorna JButton
+     * @return
+     */
     public JButton getBotonClientes(){return this.botonClientes;}
 
+    /**
+     * retorna JButton
+     * @return
+     */
     public JButton getBotonEmpresa(){return this.botonEmpresa;}
 }

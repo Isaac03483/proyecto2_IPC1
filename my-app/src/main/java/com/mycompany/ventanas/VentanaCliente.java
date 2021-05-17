@@ -25,6 +25,9 @@ public class VentanaCliente extends JFrame{
     private JScrollPane scrollVuelo, scrollAeropuerto;
     private DefaultTableModel modeloVuelo, modeloAeropuerto;
 
+    /**
+     * constructor
+     */
     public VentanaCliente(){
 
         this.setSize(800,450);
@@ -38,6 +41,9 @@ public class VentanaCliente extends JFrame{
         this.manejador = new ManejadorCliente(this);
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -48,6 +54,9 @@ public class VentanaCliente extends JFrame{
         colocarBoton();
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -57,6 +66,9 @@ public class VentanaCliente extends JFrame{
     
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarEtiquetas(){
 
         etiquetaImagen = new JLabel();
@@ -115,6 +127,9 @@ public class VentanaCliente extends JFrame{
 
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarTextos(){
 
         textoOrigen = new JTextField();
@@ -130,6 +145,9 @@ public class VentanaCliente extends JFrame{
         panel.add(textoFecha);
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarCombo(){
 
         comboAeroLinea = new JComboBox<>();
@@ -139,6 +157,9 @@ public class VentanaCliente extends JFrame{
 
     }
 
+    /**
+     * agrega aerolineas al combo
+     */
     private void agregarAeroLineas(){
 
         ArrayList<AeroLinea> aeroLineas = ArchivoAeroLinea.leerAeroLinea();
@@ -151,6 +172,9 @@ public class VentanaCliente extends JFrame{
         
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarBoton(){
 
         botonComprarBoleto = new JButton("Buscar vuelo");
@@ -176,6 +200,9 @@ public class VentanaCliente extends JFrame{
         oyenteVolver();
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarTabla(){
 
         modeloVuelo = new DefaultTableModel();
@@ -214,6 +241,9 @@ public class VentanaCliente extends JFrame{
         agregarAeropuertos();
     }
 
+    /**
+     * agrega vuelso a la tabla
+     */
     private void agregarVuelos(){
 
         ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
@@ -228,6 +258,9 @@ public class VentanaCliente extends JFrame{
         }
     }
 
+    /**
+     * agrega aeropuertos a la tabla
+     */
     private void agregarAeropuertos(){
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
 
@@ -239,6 +272,9 @@ public class VentanaCliente extends JFrame{
         }
     }
 
+    /**
+     * oyente botonVolver
+     */
     private void oyenteVolver(){
 
         botonVolver.addActionListener(new ActionListener(){
@@ -250,6 +286,9 @@ public class VentanaCliente extends JFrame{
         });
     }
 
+    /**
+     * botonReporte
+     */
     private void oyenteInformacion(){
 
         botonReporte.addActionListener(new ActionListener(){
@@ -260,6 +299,9 @@ public class VentanaCliente extends JFrame{
         });
     }
 
+    /**
+     * oyente botonCompra
+     */
     private void oyenteComprar(){
 
         botonComprarBoleto.addActionListener(new ActionListener(){
@@ -270,6 +312,9 @@ public class VentanaCliente extends JFrame{
         });
     }
 
+    /**
+     * oyente etiqueta
+     */
     private void oyentePasaporte(){
 
         etiquetaNuevoPasaporte.addMouseListener(new MouseAdapter(){
@@ -282,6 +327,9 @@ public class VentanaCliente extends JFrame{
         });
     }
 
+    /**
+     * oyente etiquetaRenovar
+     */
     private void oyenteRenovacion(){
 
         etiquetaRenovar.addMouseListener(new MouseAdapter(){
@@ -294,11 +342,27 @@ public class VentanaCliente extends JFrame{
         });
     }
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoOrigen(){return this.textoOrigen;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoDestino(){return this.textoDestino;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoFecha(){return this.textoFecha;}
 
+    /**
+     * retorna JComboBox
+     * @return
+     */
     public JComboBox<AeroLinea> getComboAeroLinea(){return this.comboAeroLinea;}
 }

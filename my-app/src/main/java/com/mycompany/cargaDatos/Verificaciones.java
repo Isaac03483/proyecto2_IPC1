@@ -7,13 +7,17 @@ import com.mycompany.aeropuerto.*;
 import com.mycompany.aeropuerto.avion.Avion;
 import com.mycompany.aeropuerto.avion.objeto_avion.Asiento;
 import com.mycompany.archivos.*;
-import com.mycompany.enums.EstadoAsiento;
-import com.mycompany.enums.EstadoVuelo;
+import com.mycompany.enums.*;
 import com.mycompany.persona.empleados.*;
 import com.mycompany.persona.pasajero.*;
 
 public class Verificaciones {
     
+    /**
+     * retorna true en caso de encontrar un aeropuerto con el mismo nombre
+     * @param nombreAeroPuerto
+     * @return
+     */
     public static boolean aeroPuertoExistente(String nombreAeroPuerto){
 
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
@@ -29,6 +33,12 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true en caso de encontrar una aerolinea con el mismo nombre en el aeropuerto seleccionado
+     * @param nombreAeroPuerto
+     * @param nombreAeroLinea
+     * @return
+     */
     public static boolean aeroLineaExistente(String nombreAeroPuerto,String nombreAeroLinea){
 
         ArrayList<AeroLinea> aeroLineas = ArchivoAeroLinea.leerAeroLinea();
@@ -46,6 +56,11 @@ public class Verificaciones {
         
     }
 
+    /**
+     * retorna true al encontrar un vuelo con el mismo código y se encuentre en espera
+     * @param codigoVuelo
+     * @return
+     */
     public static boolean verificarVuelo(int codigoVuelo){
         ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
 
@@ -62,6 +77,11 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true en caso de encontrar la tarjeta solicitada
+     * @param noTarjeta
+     * @return
+     */
     public static boolean verificarTarjeta(long noTarjeta){
 
         ArrayList<Tarjeta> tarjetas = ArchivoTarjeta.leerTarjeta();
@@ -78,6 +98,11 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true al encontrar a un gerente con una aerolinea asignada
+     * @param nombreAeroLinea
+     * @return
+     */
     public static boolean GerenteConAerolinea(String nombreAeroLinea){
 
         ArrayList<Empleado> gerentes = ArchivoEmpleado.leerEmpleados();
@@ -96,6 +121,11 @@ public class Verificaciones {
         
     }
 
+    /**
+     * retorna true al encontrar un avión con el mismo código
+     * @param codigoAvion
+     * @return
+     */
     public static boolean verificarAvion(int codigoAvion){
 
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
@@ -110,6 +140,12 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true al encontrar una distancia con el mismo origen-destino
+     * @param nombreAeroPuertoOrigen
+     * @param nombreAeroPuertoDestino
+     * @return
+     */
     public static boolean verificarDistancia(String nombreAeroPuertoOrigen, String nombreAeroPuertoDestino){
 
         ArrayList<Distancia> distancias = ArchivoDistancia.leerDistancias();
@@ -129,6 +165,13 @@ public class Verificaciones {
 
     }
 
+    /**
+     * retorna true al verificar que el avión posea la gasolina suficiente para recorrer toda la distancia
+     * @param codigoAvion
+     * @param nombreAeroPuertoOrigen
+     * @param nombreAeroPuertoDestino
+     * @return
+     */
     public static boolean verificarGasolina(int codigoAvion, String nombreAeroPuertoOrigen, String nombreAeroPuertoDestino){
 
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
@@ -163,6 +206,9 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna  ture  al encontrar el mismo número de pasaporte
+     */
     public static boolean verificarPasaporte(int noPasaporte){
 
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
@@ -177,6 +223,11 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true al encontrar a un pasaporte con un vuelo en espera
+     * @param noPasaporte
+     * @return
+     */
     public static boolean verificarPasaporteVuelo(int noPasaporte){
 
         ArrayList<Reservacion> reservaciones = ArchivoReservacion.leerReservacion();
@@ -204,6 +255,12 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true al verificar que el pasaporte se encuentra vigente
+     * @param noPasaporte
+     * @param fecha
+     * @return
+     */
     public static boolean verificarVigencia(int noPasaporte, Date fecha){
 
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
@@ -221,6 +278,12 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true al verificar que el pais actual del pasaporte es igual al enviado
+     * @param noPasaporte
+     * @param ciudadOrigen
+     * @return
+     */
     public static boolean verificarUbicacionPasaporte(int noPasaporte, String ciudadOrigen){
 
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
@@ -246,6 +309,11 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true al encontrar al avión con un vuelo en espera
+     * @param codigoAvion
+     * @return
+     */
     public static boolean verificarAvionConVuelo(int codigoAvion){
 
         ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
@@ -264,6 +332,12 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true en caso de encontrar un asiento ocupado
+     * @param avion
+     * @param noAsiento
+     * @return
+     */
     public static boolean verificarAsientoOcupado(Avion avion, String noAsiento){
 
         for(int i =0; i< avion.getObjetos().length; i++){
@@ -281,6 +355,12 @@ public class Verificaciones {
         return false;
     }
 
+    /**
+     * retorna true en caso de que el numero de pasaporte y la contraseña sean correctas
+     * @param noPasaporte
+     * @param contrasena
+     * @return
+     */
     public static boolean verificarConstrasena(int noPasaporte, String contrasena){
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
 

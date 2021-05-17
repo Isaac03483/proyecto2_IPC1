@@ -18,6 +18,10 @@ public class VentanaCarga extends JFrame{
     private ManejadorCarga manejador;
     private Administrador admin;
 
+    /**
+     * constructor
+     * @param admin
+     */
     public VentanaCarga(Administrador admin){
 
         this.setTitle(Constante.TITULO);
@@ -30,6 +34,10 @@ public class VentanaCarga extends JFrame{
         manejador = new ManejadorCarga(this);
     }
 
+    /**
+     * inicia componentes
+     * 
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -37,6 +45,9 @@ public class VentanaCarga extends JFrame{
         colocarArea();
     }
 
+    /**
+     * Coloca componentes
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -46,6 +57,9 @@ public class VentanaCarga extends JFrame{
 
     }
 
+    /**
+     * Coloca componentes
+     */
     private void colocarBoton(){
 
         botonCargar = new JButton("Cargar archivo");
@@ -71,6 +85,9 @@ public class VentanaCarga extends JFrame{
 
     }
 
+    /**
+     * Coloca componentes
+     */
     private void colocarArea(){
 
         areaTexto = new JTextArea();
@@ -82,12 +99,30 @@ public class VentanaCarga extends JFrame{
         panel.add(scroll);
     }
 
+    
+    /** 
+     * @param oyenteCarga(
+     * @return JButton
+     */
     public JButton getBoton(){return this.botonCargar;}
 
+    
+    /** 
+     * @param oyenteCarga(
+     * @return JTextArea
+     */
     public JTextArea getArea(){return this.areaTexto;}
 
+    
+    /** 
+     * @param oyenteCarga(
+     * @return Administrador
+     */
     public Administrador getAdmin(){return this.admin;}
 
+    /**
+     * oyente botonCargar
+     */
     private void oyenteCarga(){
 
         botonCargar.addActionListener(new ActionListener(){
@@ -99,6 +134,9 @@ public class VentanaCarga extends JFrame{
         });
     }
 
+    /**
+     * oyente botonMenuAdministrador
+     */
     private void oyenteAdministrar(){
 
         botonMenuAdministrador.addActionListener(new ActionListener(){
@@ -109,6 +147,9 @@ public class VentanaCarga extends JFrame{
         });
     }
 
+    /**
+     * oyente botonMenuPrincipal
+     */
     private void oyentePrincipal(){
 
         botonMenuPrincipal.addActionListener(new ActionListener(){

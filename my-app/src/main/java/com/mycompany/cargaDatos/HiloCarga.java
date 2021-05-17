@@ -19,6 +19,11 @@ public class HiloCarga extends Thread{
     private File archivoAProcesar;
     private VentanaCarga ventana;
 
+    /**
+     * constructor que almacena el archivo y la ventana que contiene la carga de archivos
+     * @param archivoAProcesar
+     * @param ventana
+     */
     public HiloCarga(File archivoAProcesar, VentanaCarga ventana){
 
         this.archivoAProcesar = archivoAProcesar;
@@ -26,6 +31,9 @@ public class HiloCarga extends Thread{
 
     }
 
+    /**
+     * método run que llama al método leerArchivo
+     */
     @Override
     public void run(){
 
@@ -44,6 +52,12 @@ public class HiloCarga extends Thread{
         }
     }
 
+    /**
+     * método que ira recorriendo el archivo almacenado y creando distintos archivos binarios dependiendo del caso
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ArrayIndexOutOfBoundsException
+     */
     private void leerArchivo() throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
 
         BufferedReader lector = new BufferedReader(new FileReader(this.archivoAProcesar));
@@ -244,6 +258,11 @@ public class HiloCarga extends Thread{
         lector.close();
     }
 
+    /**
+     * método que quita los paréntesis extra colocados en el formato del archivo de texto
+     * @param auxiliarDos
+     * @return
+     */
     private String[] quitarParentesis(String auxiliarDos){
 
         int posicion = auxiliarDos.lastIndexOf(")");
@@ -253,6 +272,11 @@ public class HiloCarga extends Thread{
         return datos;
     }
 
+    /**
+     * método que cambia un String y retorna una objeto de tipo Date
+     * @param texto
+     * @return
+     */
     private Date formatoFecha(String texto){
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");

@@ -4,18 +4,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InvalidClassException;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import com.mycompany.constantes.Constante;
 import com.mycompany.persona.empleados.Empleado;
 
 public class ArchivoEmpleado {
-    
+    /**
+     * método estático que guarda al empleado enviado en un archivo binario
+     * @param empleado
+     */
     public static void guardarEmpleado(Empleado empleado){
 
         FileOutputStream archivo;
@@ -35,6 +35,10 @@ public class ArchivoEmpleado {
         }
     }
 
+    /**
+     * método que retorna todos los archivos binarios de los empleados en un array
+     * @return
+     */
     public static ArrayList<Empleado> leerEmpleados(){
 
         ArrayList<Empleado> empleados = new ArrayList<>();

@@ -17,6 +17,11 @@ public class VentanaLog extends JDialog{
     private JButton botonIngreso;
     private ManejadorLogin manejador;
 
+    /**
+     * constructor
+     * @param menu
+     * @param modal
+     */
     public VentanaLog(Menu menu, boolean modal){
         super(menu, modal);
 
@@ -31,6 +36,9 @@ public class VentanaLog extends JDialog{
 
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -39,6 +47,9 @@ public class VentanaLog extends JDialog{
         colocarBoton();
     }
 
+    /**
+     * coloca panel
+     */
     private void colocarPanel(){
         
         panel = new JPanel();
@@ -47,6 +58,9 @@ public class VentanaLog extends JDialog{
         panel.setBackground(Color.GRAY);
     }
 
+    /**
+     * coloca etiquetas
+     */
     private void colocarEtiqueta(){
 
         etiquetaUsuario = new JLabel("Usuario:");
@@ -62,6 +76,9 @@ public class VentanaLog extends JDialog{
         etiquetaContrasena.setForeground(Color.BLACK);
     }
 
+    /**
+     * coloca textField
+     */
     private void colocarTexto(){
 
         textoUsuario = new JTextField();
@@ -73,6 +90,10 @@ public class VentanaLog extends JDialog{
         panel.add(textoContrasena);
     }
 
+    /**
+     * 
+     * coloca botones
+     */
     private void colocarBoton(){
 
         botonIngreso = new JButton("Ingresar");
@@ -84,10 +105,22 @@ public class VentanaLog extends JDialog{
         oyenteIngreso();
     }
 
+    /**
+     * retorna botonIngreso
+     * @return
+     */
     public JButton getBoton(){return this.botonIngreso;}
 
+    /**
+     * retorna usuario
+     * @return
+     */
     public String getUsuario(){return this.textoUsuario.getText();}
 
+    /**
+     * retorna contraseña
+     * @return
+     */
     public String getContrasena(){
 
         char[] letras = textoContrasena.getPassword();
@@ -99,6 +132,9 @@ public class VentanaLog extends JDialog{
         return contrasena;
     }
 
+    /**
+     * oyente botonIngreso
+     */
     private void oyenteIngreso(){
 
         botonIngreso.addActionListener(new ActionListener(){

@@ -12,10 +12,18 @@ public class ManejadorCrearDistancia {
     
     private VentanaCrearDistancia ventana;
 
+    /**
+     * Constructor para el manejo de la ventanaCrearDistancia
+     * @param ventana
+     */
     public ManejadorCrearDistancia(VentanaCrearDistancia ventana){
         this.ventana = ventana;
     }
 
+
+    /**
+     * Método que crea distancias con la información proporcionada por medio de la ventana
+     */
     public void accionCrear(){
         AeroPuerto aeroPuertoOrigen = (AeroPuerto)this.ventana.getOrigen().getSelectedItem();
         AeroPuerto aeroPuertoDestino = (AeroPuerto)this.ventana.getDestino().getSelectedItem();

@@ -24,6 +24,10 @@ public class VentanaCrearEmpleado extends JFrame{
     private ManejadorCrearEmpleado manejador;
     private Administrador admin;
 
+    /**
+     * constructor
+     * @param admin
+     */
     public VentanaCrearEmpleado(Administrador admin){
         this.setTitle(Constante.TITULO);
         this.setSize(600,400);
@@ -36,6 +40,9 @@ public class VentanaCrearEmpleado extends JFrame{
         manejador = new ManejadorCrearEmpleado(this);
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -46,6 +53,9 @@ public class VentanaCrearEmpleado extends JFrame{
         colocarBoton();
     }
 
+    /**
+     * Genera los componentes necesarios
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -54,6 +64,9 @@ public class VentanaCrearEmpleado extends JFrame{
         panel.setLayout(null);
     }
 
+    /**
+     * Genera los componentes necesarios
+     */
     private void colocarEtiquetas(){
 
         etiquetaImagen = new JLabel();
@@ -107,6 +120,9 @@ public class VentanaCrearEmpleado extends JFrame{
         etiquetaAeroLinea.setVisible(false);
     }
 
+    /**
+     * Genera los componentes necesarios
+     */
     private void colocarTexto(){
 
         textoNombre = new JTextField();
@@ -118,6 +134,9 @@ public class VentanaCrearEmpleado extends JFrame{
         panel.add(textoApellido);
     }
 
+    /**
+     * Genera los componentes necesarios
+     */
     private void colocarRadio(){
         radioAdmin = new JRadioButton("Administrador.");
         radioAdmin.setBounds(50, 250, 150, 20);
@@ -149,6 +168,9 @@ public class VentanaCrearEmpleado extends JFrame{
         oyenteEmpleado();
     }
 
+    /**
+     * Genera los componentes necesarios
+     */
     private void colocarCombo(){
         
         combo = new JComboBox<>();
@@ -159,6 +181,9 @@ public class VentanaCrearEmpleado extends JFrame{
         combo.setVisible(false);
     }
 
+    /**
+     * Genera los componentes necesarios
+     */
     private void colocarBoton(){
 
         botonCrear = new JButton("Crear");
@@ -186,20 +211,58 @@ public class VentanaCrearEmpleado extends JFrame{
         oyentePricipal();
     }
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return JTextField
+     */
     public JTextField getTextoNombre(){return this.textoNombre;}
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return JTextField
+     */
     public JTextField getTextoApellido(){return this.textoApellido;}
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return JComboBox<AeroLinea>
+     */
     public JComboBox<AeroLinea> getCombo(){return this.combo;}
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return JRadioButton
+     */
     public JRadioButton getRadioAdmin(){return this.radioAdmin;}
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return JRadioButton
+     */
     public JRadioButton getRadioGerente(){return this.radioGerente;}
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return JRadioButton
+     */
     public JRadioButton getRadioOperador(){return this.radioOperador;}
 
+    
+    /** 
+     * @param oyenteCrear(
+     * @return Administrador
+     */
     public Administrador getAdmin(){return this.admin;}
 
+    /**
+     * oyente botonCrear
+     */
     private void oyenteCrear(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -211,6 +274,9 @@ public class VentanaCrearEmpleado extends JFrame{
         });
     }
 
+    /**
+     * oyente botonEmpleado
+     */
     private void oyenteEmpleado(){
 
         ActionListener oyenteAccion = new ActionListener(){
@@ -235,6 +301,9 @@ public class VentanaCrearEmpleado extends JFrame{
         radioOperador.addActionListener(oyenteAccion);
     }
 
+    /**
+     * agrega aerolineas al comboBox
+     */
     private void agregarAeroLineas(){
 
         ArrayList<AeroLinea> aeroLineas = ArchivoAeroLinea.leerAeroLinea();
@@ -246,6 +315,9 @@ public class VentanaCrearEmpleado extends JFrame{
         }
     }
 
+    /**
+     * oyente botonMenuAdmin
+     */
     private void oyenteAdministrar(){
 
         botonMenuAdmin.addActionListener(new ActionListener(){
@@ -257,6 +329,9 @@ public class VentanaCrearEmpleado extends JFrame{
         });
     }
 
+    /**
+     * oyente botonMenuPrincipal
+     */
     private void oyentePricipal(){
 
         botonMenuPrincipal.addActionListener(new ActionListener(){
@@ -268,6 +343,9 @@ public class VentanaCrearEmpleado extends JFrame{
         });
     }
 
+    /**
+     * oyente etiquetaAeroPuertoActual
+     */
     private void oyenteAeroPuerto(){
 
         etiquetaAeroPuertoActual.addMouseListener(new MouseAdapter(){

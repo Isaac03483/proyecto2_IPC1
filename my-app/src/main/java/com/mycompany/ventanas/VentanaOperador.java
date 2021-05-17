@@ -16,6 +16,10 @@ public class VentanaOperador extends JFrame{
     private Empleado empleado;
     private ManejadorOperador manejador;
 
+    /**
+     * Constructor para la ventanaOperador
+     * @param empleado
+     */
     public VentanaOperador(Empleado empleado){
 
         this.setTitle(Constante.TITULO);
@@ -30,6 +34,9 @@ public class VentanaOperador extends JFrame{
         manejador = new ManejadorOperador(this);
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -37,6 +44,9 @@ public class VentanaOperador extends JFrame{
         colocarBoton();
     }
 
+    /**
+     * coloca panel
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -46,6 +56,9 @@ public class VentanaOperador extends JFrame{
 
     }
 
+    /**
+     * coloca etiquetas
+     */
     private void colocarEtiqueta(){
 
         etiquetaImagen = new JLabel();
@@ -101,6 +114,9 @@ public class VentanaOperador extends JFrame{
         panel.add(etiquetaAvion);
     }
 
+    /**
+     * coloca botones
+     */
     private void colocarBoton(){
 
         botonIniciar = new JButton("Iniciar");
@@ -140,6 +156,10 @@ public class VentanaOperador extends JFrame{
         }
 
     }
+
+    /**
+     * oyente botonmenu
+     */
     private void oyenteMenu(){
         botonMenu.addActionListener(new ActionListener(){
 
@@ -149,6 +169,9 @@ public class VentanaOperador extends JFrame{
         });
     }
 
+    /**
+     * oyente botones
+     */
     private void oyentesBotones(){
 
         botonCancelar.addActionListener(new ActionListener(){
@@ -189,12 +212,27 @@ public class VentanaOperador extends JFrame{
         });
     }
 
+    /**
+     * retorna etiquetaorigen
+     */
     public JLabel getEtiquetaOrigen(){return this.etiquetaOrigen;}
 
+    /**
+     * retorna etiquetaDestino
+     * @return
+     */
     public JLabel getEtiquetaDestino(){return this.etiquetaDestino;}
 
+    /**
+     * retorna etiquetaavion
+     * @return
+     */
     public JLabel getEtiquetaAvion(){return this.etiquetaAvion;}
 
+    /**
+     * retorna el empleado
+     * @return
+     */
     public Empleado getEmpleado(){return this.empleado;}
 
 

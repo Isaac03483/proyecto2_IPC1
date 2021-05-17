@@ -12,6 +12,10 @@ import com.mycompany.persona.pasajero.Pasaporte;
 
 public class ArchivoPasaporte {
     
+    /**
+     * método estático que guarda el pasaporte enviado en un archivo binario
+     * @param pasaporte
+     */
     public static void agregarPasaporte(Pasaporte pasaporte){
         
         FileOutputStream archivo;
@@ -33,6 +37,10 @@ public class ArchivoPasaporte {
         
     }
 
+    /**
+     * método estático que obtiene todos los archivos binarios de los pasaportes y los retorna en un array
+     * @return
+     */
     public static ArrayList<Pasaporte> leerPasaporte(){
 
         ArrayList<Pasaporte> pasaportes = new ArrayList<>();

@@ -22,6 +22,10 @@ public class VentanaCrearVuelo extends JFrame{
     private Administrador admin;
     private ManejadorCrearVuelo manejador;
 
+    /**
+     * constructor
+     * @param admin
+     */
     public VentanaCrearVuelo(Administrador admin){
         
         this.admin = admin;
@@ -36,6 +40,9 @@ public class VentanaCrearVuelo extends JFrame{
         manejador = new ManejadorCrearVuelo(this);
     }
 
+    /**
+     * iniciar componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -46,6 +53,9 @@ public class VentanaCrearVuelo extends JFrame{
 
     }
 
+    /**
+     * coloca panel
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -55,6 +65,9 @@ public class VentanaCrearVuelo extends JFrame{
 
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarEtiquetas(){
 
         etiquetaImagen = new JLabel();
@@ -109,6 +122,9 @@ public class VentanaCrearVuelo extends JFrame{
         etiquetaFechaSalida.setForeground(Color.BLACK);
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarTexto(){
 
         textoPrecio = new JTextField();
@@ -121,6 +137,9 @@ public class VentanaCrearVuelo extends JFrame{
 
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarCombo(){
 
         comboOrigenDestino = new JComboBox<>();
@@ -134,6 +153,9 @@ public class VentanaCrearVuelo extends JFrame{
         agregarAviones();
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarBoton(){
         
         botonCrear = new JButton("Crear");
@@ -158,6 +180,9 @@ public class VentanaCrearVuelo extends JFrame{
         oyentePrincipal();
     }
 
+    /**
+     * agrega distancias al comboBox
+     */
     private void agregarOrigenDestino(){
         ArrayList<Distancia> distancias = ArchivoDistancia.leerDistancias();
 
@@ -171,6 +196,9 @@ public class VentanaCrearVuelo extends JFrame{
         }
     }
 
+    /**
+     * oyente botonCrear
+     */
     private void oyenteCrearVuelo(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -180,6 +208,10 @@ public class VentanaCrearVuelo extends JFrame{
             }
         });
     }
+
+    /**
+     * oyente etiqueta
+     */
     private void oyenteCrearDistancia(){
 
         etiquetaOrigenDestino.addMouseListener(new MouseAdapter(){
@@ -192,6 +224,9 @@ public class VentanaCrearVuelo extends JFrame{
         });
     }
 
+    /**
+     * oyente boton
+     */
     private void oyentePrincipal(){
 
         botonPrincipal.addActionListener(new ActionListener(){
@@ -202,6 +237,9 @@ public class VentanaCrearVuelo extends JFrame{
         });
     }
 
+    /**
+     * oyente boton
+     */
     private void oyenteAdministrar(){
         
         botonAdministrar.addActionListener(new ActionListener(){
@@ -212,6 +250,9 @@ public class VentanaCrearVuelo extends JFrame{
         });
     }
 
+    /**
+     * agrega aviones al combo
+     */
     private void agregarAviones(){
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
         
@@ -224,6 +265,9 @@ public class VentanaCrearVuelo extends JFrame{
         }
     }
 
+    /**
+     * oyente etiqueta
+     */
     private void oyenteAeroPuerto(){
 
         etiquetaAeroPuertoActual.addMouseListener(new MouseAdapter(){
@@ -236,13 +280,33 @@ public class VentanaCrearVuelo extends JFrame{
         });
     }
 
+    /**
+     * Retorna valores
+     * @return
+     */
     public Administrador getAdministrador(){return this.admin;}
 
+    /**
+     * Retorna valores
+     * @return
+     */
     public JComboBox<Distancia> getComboOrigenDestino(){return this.comboOrigenDestino;}
 
+    /**
+     * Retorna valores
+     * @return
+     */
     public JTextField getTextoFecha(){return this.textoFecha;}
 
+    /**
+     * Retorna valores
+     * @return
+     */
     public JComboBox<Avion> getComboCodigoAvion(){return this.comboAvion;}
 
+    /**
+     * Retorna valores
+     * @return
+     */
     public JTextField getTextoPrecio(){return this.textoPrecio;}
 }

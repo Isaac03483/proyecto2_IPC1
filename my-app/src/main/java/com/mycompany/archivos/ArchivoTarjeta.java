@@ -9,6 +9,10 @@ import com.mycompany.persona.pasajero.Tarjeta;
 
 public class ArchivoTarjeta {
     
+    /**
+     * método estático que guarda la tarjeta enviada en un archivo binario
+     * @param tarjeta
+     */
     public static void agregarTarjeta(Tarjeta tarjeta){
 
         FileOutputStream file;
@@ -27,6 +31,10 @@ public class ArchivoTarjeta {
         }
     }
 
+    /**
+     * método que almacena todos los archivos binarios de las tarjetas y las retorna en un array
+     * @return
+     */
     public static ArrayList<Tarjeta> leerTarjeta(){
 
         ArrayList<Tarjeta> tarjetas = new ArrayList<>();

@@ -12,6 +12,10 @@ import com.mycompany.persona.pasajero.Reservacion;
 
 public class ArchivoReservacion {
     
+    /**
+     * método estático que guarda la reservación en un archivo binario
+     * @param reservacion
+     */
     public static void agregarReservacion(Reservacion reservacion){
 
         FileOutputStream file;
@@ -65,6 +69,10 @@ public class ArchivoReservacion {
         }
     }
 
+    /**
+     * método estático que obtiene  todos los archivos binarios de las reservaciones y las retorna  en un array
+     * @return
+     */
     public static ArrayList<Reservacion> leerReservacion(){
 
         ArrayList<Reservacion> reservaciones = new ArrayList<>();

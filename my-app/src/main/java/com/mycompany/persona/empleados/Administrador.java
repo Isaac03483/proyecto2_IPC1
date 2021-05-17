@@ -15,13 +15,27 @@ public class Administrador extends Empleado{
     private String nombreAeroPuertoActual;
     private AeroPuerto[] aeroPuertos;
 
+    /**
+     * Constructor de la clase hija Administrador
+     * @param nombre describe el nombre del administrador
+     * @param apellido describe el apellido del administrador
+     */
     public Administrador(String nombre, String apellido) {
         super(nombre, apellido);
         
     }
 
+    /**
+     * retorna el aeropuerto en el que el administrador se encuentra
+     * @return retorna un dato de tipo string
+     */
     public String getAeroPuertoActual(){return this.nombreAeroPuertoActual;}
 
+ 
+    /**
+     * Selecciona el aeropuerto que el administrador va a operar
+     * @param menu recibe un dato de tipo JFrame para el cierre de ventanas
+     */
     public void seleccionarAeroPuerto(JFrame menu){
 
         int opcionMenu;
@@ -46,6 +60,10 @@ public class Administrador extends Empleado{
         }
     }
 
+    /**
+     * Elige una de las distintas acciones que el administrador tiene
+     * @param menu recibe un dato de tipo JFrame para el cierre de ventanas
+     */
     public void menuAdministrador(JFrame menu){
         this.menu = menu;
         int opcionMenu;
@@ -79,6 +97,9 @@ public class Administrador extends Empleado{
                     this.menu.dispose();
                     break;
                     case 4:
+                    VentanaReporte reporte = new VentanaReporte(this);
+                    reporte.setVisible(true);
+                    this.menu.dispose();
                     break;
                     case 5:
                     VentanaOperador operador = new VentanaOperador(this);
@@ -105,6 +126,10 @@ public class Administrador extends Empleado{
         }
     }
 
+    /**
+     * método privado que lista todos los aeropuertos disponibles
+     * @return retorn a un dato de tipo String
+     */
     private String listarAeroPuertos(){
 
         ArrayList<AeroPuerto> aeros = ArchivoAeroPuerto.leerAeroPuertos();

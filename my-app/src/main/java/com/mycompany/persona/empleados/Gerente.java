@@ -10,13 +10,27 @@ public class Gerente extends Empleado{
     private String nombreAeroLinea;
     private JFrame ventana;
 
+    /**
+     * Constructor para la creación de gerentes
+     * @param nombre
+     * @param apellido
+     * @param nombreAeroLinea
+     */
     public Gerente(String nombre, String apellido,String nombreAeroLinea) {
         super(nombre, apellido);
         this.nombreAeroLinea=nombreAeroLinea;
     }
 
+    /**
+     * método que retorna la aerolinea del gerente
+     * @return
+     */
     public String getNombreAeroLinea(){return this.nombreAeroLinea;}
     
+    /**
+     * menú con las distintas acciones del gerente
+     * @param ventana
+     */
     public void menuGerente(JFrame ventana){
         this.ventana = ventana;
         int opcionMenu;

@@ -17,10 +17,18 @@ public class ManejadorOperador {
     
     private VentanaOperador ventana;
 
+    /**
+     * Constructor para el manejo de la ventanaOperador
+     * @param ventana
+     */
     public ManejadorOperador(VentanaOperador ventana){
         this.ventana = ventana;
     }
 
+    /**
+     * método para cambiar el estado de un vuelo de
+     * ENESPERA a CANCELADO
+     */
     public void accionCancelar(){
 
         ArrayList<Vuelo> vuelosCompatibles = escogerVuelos();
@@ -48,6 +56,9 @@ public class ManejadorOperador {
 
     }
 
+    /**
+     * método que cambia la fecha de salida de un vuelo
+     */
     public void accionPosponer(){
         ArrayList<Vuelo> vuelosCompatibles = escogerVuelos();
         try{
@@ -83,6 +94,9 @@ public class ManejadorOperador {
 
     }
 
+    /**
+     * método para iniciar el vuelo seleccionado
+     */
     public void accionVolar(){
         ArrayList<Vuelo> vuelosCompatibles = escogerVuelos();
         try{
@@ -110,6 +124,9 @@ public class ManejadorOperador {
 
     }
 
+    /**
+     * método que regresa el menú principal
+     */
     public void accionPrincipal(){
 
         Menu menu = new Menu();
@@ -117,6 +134,9 @@ public class ManejadorOperador {
         this.ventana.dispose();
     }
 
+    /**
+     * método que muestra el menú de los empleados que acceden a operar vuelo
+     */
     public void accionMenu(){
 
         if(this.ventana.getEmpleado() instanceof Administrador){
@@ -127,12 +147,15 @@ public class ManejadorOperador {
         }
     }
 
+    /**
+     * método que muestra la distribución de asientos de un vuelo
+     */
     public void accionVisualizar(){
         
 
         ArrayList<Vuelo> vuelosCompatibles = escogerVuelos();
         try{
-            int seleccion = Integer.parseInt(JOptionPane.showInputDialog(null, "iniciar Vuelos:"
+            int seleccion = Integer.parseInt(JOptionPane.showInputDialog(null, "ver distribución de Vuelos:"
             +"\n0. Cancelar"
             +"\n"+listarVuelos(vuelosCompatibles), Constante.TITULO, JOptionPane.INFORMATION_MESSAGE));
 
@@ -152,6 +175,10 @@ public class ManejadorOperador {
         }
     }
 
+    /**
+     * método para escoger los vuelos que son compatibles con la información del empleado
+     * @return
+     */
     private ArrayList<Vuelo> escogerVuelos(){
 
         ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
@@ -208,6 +235,11 @@ public class ManejadorOperador {
         return null;
     }
 
+    /**
+     * método privado que lista todos los vuelos compatibles
+     * @param vuelos
+     * @return
+     */
     private String listarVuelos(ArrayList<Vuelo> vuelos){
 
         int posicion =0;

@@ -18,6 +18,11 @@ public class VentanaCrearDistancia extends JDialog{
     private JButton botonCrear;
     private ManejadorCrearDistancia manejador;
 
+    /**
+     * Constructor
+     * @param padre
+     * @param modal
+     */
     public VentanaCrearDistancia(VentanaCrearVuelo padre, boolean modal){
 
         super(padre, modal);
@@ -30,6 +35,9 @@ public class VentanaCrearDistancia extends JDialog{
         manejador = new ManejadorCrearDistancia(this);
     }
 
+    /**
+     * inicia componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -39,6 +47,9 @@ public class VentanaCrearDistancia extends JDialog{
         colocarTexto();
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -47,6 +58,9 @@ public class VentanaCrearDistancia extends JDialog{
         panel.setBackground(Color.GRAY);
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarEtiqueta(){
 
         etiquetaTitulo = new JLabel("CREAR DISTANCIA", SwingConstants.CENTER);
@@ -75,6 +89,9 @@ public class VentanaCrearDistancia extends JDialog{
 
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarTexto(){
 
         textoMillas = new JTextField();
@@ -82,6 +99,9 @@ public class VentanaCrearDistancia extends JDialog{
         panel.add(textoMillas);
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarBoton(){
         
         botonCrear = new JButton("Crear");
@@ -93,6 +113,9 @@ public class VentanaCrearDistancia extends JDialog{
         oyenteCrear();
     }
 
+    /**
+     * coloca componentes
+     */
     private void colocarCombo(){
 
         comboOrigen = new JComboBox<>();
@@ -106,6 +129,9 @@ public class VentanaCrearDistancia extends JDialog{
         agregarAeroPuertos();
     }
 
+    /**
+     * agrega aeropuertos al combo
+     */
     private void agregarAeroPuertos(){
 
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
@@ -121,6 +147,9 @@ public class VentanaCrearDistancia extends JDialog{
         }
     }
 
+    /**
+     * oyente botonCrear
+     */
     private void oyenteCrear(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -132,11 +161,27 @@ public class VentanaCrearDistancia extends JDialog{
         });
     }
 
+    /**
+     * retorna combo
+     * @return
+     */
     public JComboBox<AeroPuerto> getOrigen(){return this.comboOrigen;}
 
+    /**
+     * retorna combo
+     * @return
+     */
     public JComboBox<AeroPuerto> getDestino(){return this.comboDestino;}
 
+    /**
+     * retorna JTextField
+     * @return
+     */
     public JTextField getTextoMillas(){return this.textoMillas;}
 
+    /**
+     * retorna ventanaVuelo
+     * @return
+     */
     public VentanaCrearVuelo getVentanaVuelo(){return this.vuelo;}
 }

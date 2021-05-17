@@ -2,6 +2,13 @@ package com.mycompany.generadorCodigos;
 
 public class GenerarCodigo {
     
+    /**
+     * método utilizado para generar una contraseña
+     * @param palabra
+     * @param caracteresTotales
+     * @param letras
+     * @return
+     */
     public static String generarCodigo(String palabra, int caracteresTotales, boolean letras){
         int tipo=0;
         boolean verificar=letras;
@@ -20,6 +27,11 @@ public class GenerarCodigo {
         return codigo;
     }
 
+    /**
+     * método utilizado para agregar letras a la constraseña
+     * @param palabra
+     * @return
+     */
     private static String agregarLetra(String palabra){
 
         int letra = (int)(Math.random()*25);

@@ -21,6 +21,10 @@ public class VentanaCrearAero extends JFrame{
     private Administrador admin;
     private ManejadorCrearAero manejador;
 
+    /**
+     * constructor
+     * @param admin
+     */
     public VentanaCrearAero(Administrador admin){
 
         this.admin = admin;
@@ -35,6 +39,9 @@ public class VentanaCrearAero extends JFrame{
         manejador = new ManejadorCrearAero(this);
     }
 
+    /**
+     * iniciar componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -46,6 +53,9 @@ public class VentanaCrearAero extends JFrame{
 
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -54,6 +64,9 @@ public class VentanaCrearAero extends JFrame{
         panel.setLayout(null);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarEtiquetas(){
 
         etiquetaImagen = new JLabel();
@@ -113,6 +126,9 @@ public class VentanaCrearAero extends JFrame{
         etiquetaCiudad.setForeground(Color.BLACK);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarTexto(){
 
         textoNombreAeroPuerto = new JTextField();
@@ -133,6 +149,9 @@ public class VentanaCrearAero extends JFrame{
         panel.add(textoCiudad);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarRadio(){
 
         radioAeroPuerto = new JRadioButton("Aeropuerto.");
@@ -158,6 +177,9 @@ public class VentanaCrearAero extends JFrame{
         
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarCombo(){
         
         comboAeroPuerto = new JComboBox<>();
@@ -166,6 +188,9 @@ public class VentanaCrearAero extends JFrame{
         comboAeroPuerto.setVisible(false);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarBotones(){
 
         botonCrear = new JButton("Crear");
@@ -190,6 +215,9 @@ public class VentanaCrearAero extends JFrame{
         accionPrincipal();
     }
 
+    /**
+     * limpia los campos
+     */
     public void limpiarTexto(){
         textoNombreAeroPuerto.setText("");
         textoPais.setText("");
@@ -197,30 +225,93 @@ public class VentanaCrearAero extends JFrame{
         textoNombreAeroLinea.setText("");
     }
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JTextField
+     */
     public JTextField getTextoNombreAeroPuerto(){return this.textoNombreAeroPuerto;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JTextField
+     */
     public JTextField getTextoNombreAeroLinea(){return this.textoNombreAeroLinea;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JTextField
+     */
     public JTextField getTextoPais(){return this.textoPais;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JTextField
+     */
     public JTextField getTextoCiudad(){return this.textoCiudad;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JLabel
+     */
     public JLabel getEtiquetaNombreAeroPuerto(){return this.etiquetaNombreAeroPuerto;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JLabel
+     */
     public JLabel getEtiquetaNombreAeroLinea(){return this.etiquetaNombreAeroLinea;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JLabel
+     */
     public JLabel getEtiquetaPais(){return this.etiquetaPais;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JLabel
+     */
     public JLabel getEtiquetaCiudad(){return this.etiquetaCiudad;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JRadioButton
+     */
     public JRadioButton getRadioAeroPuerto(){return this.radioAeroPuerto;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JRadioButton
+     */
     public JRadioButton getRadioAeroLinea(){return this.radioAeroLinea;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return JComboBox<AeroPuerto>
+     */
     public JComboBox<AeroPuerto> getComboBox(){return this.comboAeroPuerto;}
 
+    
+    /** 
+     * @param oyenteAeroPuerto(
+     * @return Administrador
+     */
     public Administrador getAdministrador(){return this.admin;}
 
+    /**
+     * oyente etiquetaAEropuerto
+     */
     private void oyenteAeroPuerto(){
 
         etiquetaAeroPuertoActual.addMouseListener(new MouseAdapter(){
@@ -233,6 +324,9 @@ public class VentanaCrearAero extends JFrame{
         });
     }
 
+    /**
+     * oyente radios
+     */
     private void oyentePuerto(){
 
         ActionListener oyenteAccion = new ActionListener(){
@@ -248,6 +342,9 @@ public class VentanaCrearAero extends JFrame{
         radioAeroLinea.addActionListener(oyenteAccion);
     }
 
+    /**
+     * oyente botonCrear
+     */
     private void accionCrear(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -258,6 +355,9 @@ public class VentanaCrearAero extends JFrame{
         });
     }
 
+    /**
+     * oyente botonAdministrar
+     */
     private void accionAdministrar(){
 
         botonAdministrar.addActionListener(new ActionListener(){
@@ -269,6 +369,9 @@ public class VentanaCrearAero extends JFrame{
         });
     }
 
+    /**
+     * acción principal
+     */
     private void accionPrincipal(){
 
         botonPrincipal.addActionListener(new ActionListener(){

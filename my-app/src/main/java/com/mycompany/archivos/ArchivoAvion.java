@@ -9,6 +9,10 @@ import com.mycompany.constantes.Constante;
 public class ArchivoAvion {
     
 
+    /**
+     * método estático que guarda el avión enviado en un archivo binario
+     * @param avion
+     */
     public static void agregarAvion(Avion avion){
         
         FileOutputStream archivo;
@@ -28,6 +32,10 @@ public class ArchivoAvion {
         }
     }
 
+    /**
+     * método estático que guarda todos los archivos binarios de los aviones en un array y lo retorna
+     * @return
+     */
     public static ArrayList<Avion> leerAvion(){
 
         ArrayList<Avion> aviones = new ArrayList<>();

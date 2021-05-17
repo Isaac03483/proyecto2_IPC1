@@ -25,6 +25,9 @@ public class Vuelo implements Serializable, Runnable{
     private EstadoVuelo estado;
     private JLabel etiquetaAvion;
 
+    /**
+     * método oculto
+     */
     {
         this.noPasajeros =0;
     }
@@ -67,33 +70,87 @@ public class Vuelo implements Serializable, Runnable{
         this.estado = EstadoVuelo.ENESPERA;
     }
 
+    /**
+     * retorna el valor entero del código del vuelo
+     * @return
+     */
     public int getCodigoVuelo(){return this.codigoVuelo;}
 
+    /**
+     * retorna el valor entero del codigo del avión asociado al vuelo
+     * @return
+     */
     public int getCodigoAvion(){return this.codigoAvion;}
 
+    /**
+     * retorna el nombre del aeropuerto de origen
+     * @return
+     */
     public String getAeroPuertoOrigen(){return this.nombreAeroPuertoOrigen;}
 
+    /**
+     * retorna el nombre del aeropuerto de destino
+     * @return
+     */
     public String getAeroPuertoDestino(){return this.nombreAeroPuertoDestino;}
 
+    /**
+     * retorna el valor del precio del boleto del vuelo
+     * @return
+     */
     public double getPrecioBoleto(){return this.precioBoleto;}
 
+    /**
+     * 
+     * retorna la fecha de salida del avión
+     * @return
+     */
     public Date getFechaSalida(){return this.fechaSalida;}
 
+    /**
+     * retorna el estado en el que se encuentra el vuelo
+     * @return
+     */
     public EstadoVuelo getEstadoVuelo(){return this.estado;}
 
+    /**
+     * retorna el número de pasajeros que iran en el vuelo
+     * @return
+     */
     public int getNoPasajeros(){return this.noPasajeros;}
 
+    /**
+     * aumenta el número de pasajeros en el vuelo
+     */
     public void setNoPasajeros(){this.noPasajeros++;} 
 
+    /**
+     * cambia el estado del vuelo
+     * @param estado
+     */
     public void setEstadoVuelo(EstadoVuelo estado){this.estado = estado;}
 
+    /**
+     * cambia  la fecha del vuelo (pospone el vuelo)
+     * @param fechaNueva
+     */
     public void setFecha(Date fechaNueva){this.fechaSalida = fechaNueva;}
 
+    /**
+     * método para asignar la etiqueta que será utilizada en el hilo
+     * @param etiqueta
+     */
     public void asignarEtiqueta(JLabel etiqueta){
         this.etiquetaAvion = etiqueta;
         this.etiquetaAvion.setIcon(new ImageIcon(Constante.IMAGEN_AVION.getImage().getScaledInstance(this.etiquetaAvion.getHeight(), this.etiquetaAvion.getWidth(), Image.SCALE_SMOOTH)));
     }
 
+    /**
+     * Método Run que mueve una etiqueta en la ventana
+     * cambia el aeropuerto actual del avión
+     * cambia el pais en el que se encuentran los pasaportes que viajaron
+     * cambia el estado del vuelo a completado
+     */
     @Override
     public void run() {
         int contador =0;
@@ -117,6 +174,9 @@ public class Vuelo implements Serializable, Runnable{
         JOptionPane.showMessageDialog(null, "Vuelo finalizado", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * método que cambia el país de los pasaportes que viajaron
+     */
     private void cambiarPaisPasaportes(){
 
         ArrayList<Reservacion> reservaciones = ArchivoReservacion.leerReservacion();
@@ -144,6 +204,9 @@ public class Vuelo implements Serializable, Runnable{
         }
     }
 
+    /**
+     * cambia el nombre del aeropuerto actual del avión
+     */
     private void cambiarAeroPuertoAvion(){
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
         ArrayList<Distancia> distancias = ArchivoDistancia.leerDistancias();

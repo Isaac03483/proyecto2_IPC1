@@ -8,6 +8,10 @@ import com.mycompany.aeropuerto.AeroLinea;
 public class ArchivoAeroLinea {
     
 
+    /**
+     * método estático que carga el aeropuerto a un archivo binario
+     * @param aerolinea
+     */
     public static void guardarAeroLinea(AeroLinea aerolinea){
 
         try {
@@ -25,6 +29,11 @@ public class ArchivoAeroLinea {
         
     }
 
+    /**
+     * método estático que obtiene todas las aerolieneas guardadas
+     * en archivos binarios y las retorna
+     * @return
+     */
     public static ArrayList<AeroLinea> leerAeroLinea(){
 
         ArrayList<AeroLinea> aeroLineas = new ArrayList<>();

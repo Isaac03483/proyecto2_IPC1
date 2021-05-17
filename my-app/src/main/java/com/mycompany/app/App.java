@@ -7,7 +7,10 @@ import com.mycompany.persona.empleados.*;
 
 public class App {
 
-    
+    /**
+     * método main
+     * @param args
+     */
     public static void main( String[] args ){
 
         Menu menu = new Menu();
@@ -16,6 +19,9 @@ public class App {
         agregarConstantes();
     }
 
+    /**
+     * agrega un administrador por defecto
+     */
     private static void agregarConstantes(){
         Administrador admin = new Administrador("Pablo", "Fernández");
         ArchivoEmpleado.guardarEmpleado(admin);

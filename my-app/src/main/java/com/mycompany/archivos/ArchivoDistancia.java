@@ -8,6 +8,10 @@ import com.mycompany.constantes.Constante;
 
 public class ArchivoDistancia {
     
+    /**
+     * método estático que guarda la distancia enviada en un archivo binario
+     * @param distancia
+     */
     public static void agregarDistancia(Distancia distancia){
 
         FileOutputStream file;
@@ -26,6 +30,10 @@ public class ArchivoDistancia {
         }
     }
 
+    /**
+     * método estático que obtiene todos los archivos binarios de las distancias y los retorna en un array
+     * @return
+     */
     public static ArrayList<Distancia> leerDistancias(){
 
         ArrayList<Distancia> distancias = new ArrayList<>();

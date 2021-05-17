@@ -1,6 +1,5 @@
 package com.mycompany.manejadores;
 
-import java.io.File;
 import java.util.*;
 import javax.swing.JOptionPane;
 import com.mycompany.aeropuerto.*;
@@ -13,14 +12,24 @@ public class ManejadorCrearAero {
     
     VentanaCrearAero ventana;
 
+    /**
+     * Constructor para el manejo de la ventanaCrearAero
+     * @param ventana
+     */
     public ManejadorCrearAero(VentanaCrearAero ventana){
         this.ventana = ventana;
     }
 
+    /**
+     * método que cambia el aeropuerto en el que se encuentra el administrador
+     */
     public void accionAeroPuerto(){
         this.ventana.getAdministrador().seleccionarAeroPuerto(this.ventana);
     }
 
+    /**
+     * muestra todos los campos necesarios para la creación de aeropuertos  y aerolineas y oculta los demás
+     */
     public void accionEleccionPuerto(){
         if(this.ventana.getRadioAeroPuerto().isSelected()){
 
@@ -49,6 +58,9 @@ public class ManejadorCrearAero {
         }
     }
 
+    /**
+     * método que agrega aeropuertos al comboBox para la creación de aerolineas
+     */
     private void agregarAeroPuertos(){
         this.ventana.getComboBox().removeAllItems();
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
@@ -61,6 +73,10 @@ public class ManejadorCrearAero {
         }
     }
 
+    /**
+     * crea aeropuertos/aerolineas dependiendo del caso con toda la información proporcionada
+     * en la ventana
+     */
     public void accionCrear(){
 
         if(this.ventana.getRadioAeroPuerto().isSelected()){
@@ -98,11 +114,17 @@ public class ManejadorCrearAero {
         this.ventana.limpiarTexto();
     }
 
+    /**
+     * muestra las distintas acciones que puede realizar el administrador
+     */
     public void accionAdministrar(){
 
         this.ventana.getAdministrador().menuAdministrador(this.ventana);
     }
 
+    /**
+     * método que regresa al menú principal
+     */
     public void accionPrincipal(){
         Menu menu = new Menu();
         menu.setVisible(true);

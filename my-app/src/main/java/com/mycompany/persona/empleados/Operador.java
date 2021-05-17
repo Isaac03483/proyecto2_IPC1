@@ -1,19 +1,23 @@
 package com.mycompany.persona.empleados;
 
-import javax.swing.*;
-
-import com.mycompany.constantes.Constante;
-import com.mycompany.ventanas.*;
-
 public class Operador extends Empleado {
     
     private String nombreAeroLinea;
-    private JFrame ventana;
     
+    /**
+     * Constructor para la creación de operadores
+     * @param nombre
+     * @param apellido
+     * @param nombreAerolinea
+     */
     public Operador(String nombre, String apellido, String nombreAerolinea) {
         super(nombre, apellido);
         this.nombreAeroLinea=nombreAerolinea;
     }
 
+    /**
+     * método que retorna la aerolinea del operador
+     * @return
+     */
     public String getNombreAeroLinea(){return this.nombreAeroLinea;}
 }

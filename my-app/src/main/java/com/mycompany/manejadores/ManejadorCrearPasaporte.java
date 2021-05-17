@@ -5,23 +5,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-import com.mycompany.archivos.ArchivoPasaporte;
-import com.mycompany.archivos.ArchivoTarjeta;
+import com.mycompany.archivos.*;
 import com.mycompany.cargaDatos.Verificaciones;
 import com.mycompany.constantes.Constante;
 import com.mycompany.enums.*;
-import com.mycompany.persona.pasajero.Pasaporte;
-import com.mycompany.persona.pasajero.Tarjeta;
+import com.mycompany.persona.pasajero.*;
 import com.mycompany.ventanas.VentanaCrearPasaporte;
 
 public class ManejadorCrearPasaporte {
     
     private VentanaCrearPasaporte ventana;
 
+    /**
+     * Constructor para el manejo de la ventanaCrearPasaporte
+     * @param ventana
+     */
     public ManejadorCrearPasaporte(VentanaCrearPasaporte ventana){
         this.ventana = ventana;
     }
 
+    /**
+     * Método que crea los pasaportes con la información proporcionada
+     */
     public void accionCrear(){
         
         String nombre = this.ventana.getTextoNombre().getText();
@@ -93,6 +98,11 @@ public class ManejadorCrearPasaporte {
         }
     }
 
+    /**
+     * método que retorna el sexo del usuario dependiendo
+     * del radioButton que esté seleccionado
+     * @return
+     */
     private Sexo sexoSeleccionado(){
 
         if(this.ventana.getRadioHombre().isSelected()){
@@ -104,6 +114,11 @@ public class ManejadorCrearPasaporte {
         }
     }
 
+    /**
+     * método que retorna el estado civil del usuario dependiendo
+     * del radioButton seleccionado
+     * @return
+     */
     private EstadoCivil estadoSeleccionado(){
 
         if(this.ventana.getRadioCasado().isSelected()){
@@ -115,9 +130,14 @@ public class ManejadorCrearPasaporte {
         }
     }
 
+    /**
+     * método que convierte una cadena de texto a una fecha con formato predefinido
+     * @param cadena
+     * @return
+     * @throws ParseException
+     */
     private Date verificarFormatoFecha(String cadena) throws ParseException{
 
-        Date fecha;
-        return fecha = new SimpleDateFormat("dd/mm/yyyy").parse(cadena);
+        return new SimpleDateFormat("dd/mm/yyyy").parse(cadena);
     }
 }

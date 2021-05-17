@@ -17,17 +17,21 @@ public class Avion implements Serializable{
     private double consumoPorMilla;
     private Objeto[][] objetos;
 
+    /**
+     * método oculto
+     */
     {
         this.gasolinaConsumida =0;
     }
+
     /**
      * Constructor creado para crear más aviones desde el programa
-     * @param nombreAeroLinea
-     * @param aeroPuertoActual
-     * @param codigoAvion
-     * @param capacidadPasajeros
-     * @param capacidadGasolina
-     * @param consumoPorMilla
+     * @param nombreAeroLinea nombre de la aerolinea
+     * @param aeroPuertoActual nombre del aeropuerto en el que se encuentra
+     * @param codigoAvion codigo único del avion
+     * @param capacidadPasajeros capacidad única del avión
+     * @param capacidadGasolina capacidad única de gasolina
+     * @param consumoPorMilla consumo de gasolina por milla
      */
     public Avion(String nombreAeroLinea, String aeroPuertoActual, double capacidadGasolina, double consumoPorMilla){
 
@@ -39,6 +43,12 @@ public class Avion implements Serializable{
         
     }
 
+    /**
+     * método que genera la matriz de asientos y pasillos del avión
+     * @param noFilas recibe el número de filas totales
+     * @param noColumnas recibe el número de columnas totales
+     * @param columnaPasillo recube el número de columna que será asignada al pasillo
+     */
     public void generarMatiz(int noFilas, int noColumnas, int columnaPasillo){
 
         this.capacidadPasajeros = (noFilas)*(noColumnas-1);
@@ -77,6 +87,9 @@ public class Avion implements Serializable{
         generarMatriz();
     }
 
+    /**
+     * método utilizado para crear las filas y columnas del avión mediante la carga de archivos de texto
+     */
     public void generarMatriz(){
 
         int noFilas = this.capacidadPasajeros/4;
@@ -98,28 +111,77 @@ public class Avion implements Serializable{
     }
 
 
+    /**
+     * cambia el aeropuerto en el que se encuentra ahora el avión
+     * @param aeroPuertoActual recibe el nombre del nuevo aeropuerto
+     */
     public void cambiarAeroPuertoActual(String aeroPuertoActual){this.aeroPuertoActual = aeroPuertoActual;}
     
+    /**
+     * Retorna el nombre de la aerolinea asingada
+     * @return retorna un dato de tipo string
+     */
     public String getNombreAeroLinea(){return this.nombreAeroLinea;}
 
+    /**
+     * retorna el nombre del aeropuerto actual
+     * @return
+     */
     public String getAeroPuertoActual(){return this.aeroPuertoActual;}
 
+    /**
+     * retorna el código del avión
+     * @return
+     */
     public int getCodigoAvion(){return this.codigoAvion;}
 
+    /**
+     * retorna el total de gasolina consumida
+     * @return
+     */
     public double getGasolinaConsumida(){return this.gasolinaConsumida;}
 
+    /**
+     * retorna la matriz de asientos y pasillos
+     * @return
+     */
     public Objeto[][] getObjetos(){return this.objetos;}
 
+    /**
+     * retorna el valor total de la gasolina consumida
+     * @param gasolina
+     */
     public void setGasolinaConsumida(double gasolina){this.gasolinaConsumida+=gasolina;}
 
+    /**
+     * vende un asiento y cambia el estado del mismo
+     * @param i el número de fila en la que se encuentra el asiento
+     * @param j el número de columna en la que se encuentra el asiento
+     * @param estado el nuevo estado del asiento
+     */
     public void venderAsiento(int i, int j, EstadoAsiento estado){((Asiento)this.objetos[i][j]).setEstado(estado);}
 
+    /**
+     * retorna la capacidad total de pasajeros del avion
+     * @return
+     */
     public int getCapacidadPasajeros(){return this.capacidadPasajeros;}
 
+    /**
+     * retorna la capacidad total de gasolina que posee el avión
+     * @return
+     */
     public double getCapacidadGasolina(){return this.capacidadGasolina;}
 
+    /**
+     * retorna el consumo de gasolina por milla
+     * @return
+     */
     public double getConsumoPorMilla() {return this.consumoPorMilla;}
 
+    /**
+     * método sobreescrito de la clase object
+     */
     @Override
     public String toString(){return String.valueOf(this.codigoAvion);}
 }

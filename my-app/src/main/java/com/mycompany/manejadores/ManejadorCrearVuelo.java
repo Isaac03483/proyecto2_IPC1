@@ -18,10 +18,17 @@ public class ManejadorCrearVuelo {
     private VentanaCrearVuelo ventana;
     private SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
 
+    /**
+     * Constructor para la ventanaCrearVuelo
+     * @param ventana
+     */
     public ManejadorCrearVuelo(VentanaCrearVuelo ventana){
         this.ventana = ventana;
     }
 
+    /**
+     * Método que verifica toda la información necesaria para la creación de vuelos
+     */
     public void accionCrearVuelo(){
         
         String fecha = this.ventana.getTextoFecha().getText();
@@ -61,18 +68,31 @@ public class ManejadorCrearVuelo {
         }
     }
 
+    /**
+     * método que inicia la ventana para la creación de distancias
+     */
     public void accionCrearDistancia(){
         VentanaCrearDistancia distancia = new VentanaCrearDistancia(this.ventana, true);
         distancia.setVisible(true);
     }
+
+    /**
+     * método que muestra la opción de cambiar el aeropuerto en el que se encuentra el administrador
+     */
     public void accionAeroPuerto(){
         this.ventana.getAdministrador().seleccionarAeroPuerto(this.ventana);
     }
 
+    /**
+     * método que muestra el menú de opciones del administrador
+     */
     public void accionAdministrar(){
         this.ventana.getAdministrador().menuAdministrador(this.ventana);
     }
 
+    /**
+     * método que regresa el menú principal
+     */
     public void accionPrincipal(){
         Menu menu = new Menu();
         menu.setVisible(true);

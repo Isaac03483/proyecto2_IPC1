@@ -23,6 +23,9 @@ public class VentanaCrearAvion extends JFrame{
     private Administrador admin;
     private ManejadorCrearAvion manejador;
 
+    /**
+     * constructor
+     */
     public VentanaCrearAvion(Administrador admin){
 
         this.admin = admin;
@@ -37,6 +40,9 @@ public class VentanaCrearAvion extends JFrame{
         this.manejador = new ManejadorCrearAvion(this);
     }
 
+    /**
+     * iniciar componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -46,6 +52,9 @@ public class VentanaCrearAvion extends JFrame{
         colocarBoton();
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -55,6 +64,9 @@ public class VentanaCrearAvion extends JFrame{
         panel.setBackground(Color.GRAY);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarEtiquetas(){
 
         etiquetaImagen = new JLabel();
@@ -107,6 +119,9 @@ public class VentanaCrearAvion extends JFrame{
         etiquetaConsumoMilla.setForeground(Color.BLACK);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarCombo(){
 
         comboAeroPuerto = new JComboBox<>();
@@ -120,6 +135,9 @@ public class VentanaCrearAvion extends JFrame{
         panel.add(comboAeroLinea);
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarTexto(){
 
         textoCapacidadGasolina = new JTextField();
@@ -132,6 +150,9 @@ public class VentanaCrearAvion extends JFrame{
 
     }
 
+    /**
+     * Colocar componentes
+     */
     private void colocarBoton(){
 
         botonCrear = new JButton("Crear");
@@ -156,16 +177,39 @@ public class VentanaCrearAvion extends JFrame{
         oyentePrincipal();
     }
 
+    /**
+     * retorna administrador
+     * @return
+     */
     public Administrador getAdministrador(){return this.admin;}
 
+    /**
+     * retorna JComboBox
+     * @return
+     */
     public JComboBox<AeroPuerto> getComboAeroPuerto(){return this.comboAeroPuerto;}
 
+    /**
+     * retorna JComboBox
+     * @return
+     */
     public JComboBox<AeroLinea> getComboAeroLinea(){return this.comboAeroLinea;}
 
+    /**
+     * Retorna JTextField
+     * @return
+     */
     public JTextField getTextoGasolina(){return this.textoCapacidadGasolina;}
 
+    /**
+     * Retorna JTextField
+     * @return
+     */
     public JTextField getTextoMillas(){return this.textoConsumoMilla;}
 
+    /**
+     * agrega aeropuertos al combo
+     */
     private void agregarAeroPuertos(){
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
 
@@ -175,6 +219,9 @@ public class VentanaCrearAvion extends JFrame{
         this.comboAeroPuerto.setSelectedItem(aeroPuertos.get(0));
     }
 
+    /**
+     * oyente botonPrincipal
+     */
     private void oyentePrincipal(){
 
         botonPrincipal.addActionListener(new ActionListener(){
@@ -185,6 +232,9 @@ public class VentanaCrearAvion extends JFrame{
         });
     }
 
+    /**
+     * oyente botonAdministrar
+     */
     private void oyenteAdministrar(){
         
         botonAdministrar.addActionListener(new ActionListener(){
@@ -195,6 +245,9 @@ public class VentanaCrearAvion extends JFrame{
         });
     }
 
+    /**
+     * oyente etiquetaAeroPuertoActual
+     */
     private void oyenteAeroPuerto(){
 
         etiquetaAeroPuertoActual.addMouseListener(new MouseAdapter(){
@@ -207,6 +260,9 @@ public class VentanaCrearAvion extends JFrame{
         });
     }
 
+    /**
+     * oyenteBotonCrear
+     */
     private void oyenteCrearAvion(){
 
         botonCrear.addActionListener(new ActionListener(){
@@ -218,6 +274,9 @@ public class VentanaCrearAvion extends JFrame{
         });
     }
 
+    /**
+     * oyente combo
+     */
     private  void oyenteAeroLinea(){
         comboAeroPuerto.addActionListener(new ActionListener(){
             

@@ -14,11 +14,19 @@ public class ManejadorVuelos {
     
     private VentanaVuelos ventana;
 
+    /**
+     * Constructor para manejo de la ventanaVuelos
+     * @param ventana
+     */
     public ManejadorVuelos(VentanaVuelos ventana){
         this.ventana = ventana;
 
     }
 
+    /**
+     * Método que revisa toda la información necesaria y las verificaciones
+     * para poder comprar y generar una reservación del vuelo
+     */
     public void accionComprar(){
 
         Tarjeta tarjetaUsuario = obtenerTarjeta(this.ventana.getNoPasaporte());
@@ -41,8 +49,9 @@ public class ManejadorVuelos {
                             if(pasaporteUsuario.getContrasena().equals("")){
                                 pasaporteUsuario.generarContrasena();
                                 JOptionPane.showMessageDialog(null, "Tu contraseña por primera compra es: \n"+pasaporteUsuario.getContrasena());
-                                ArchivoPasaporte.agregarPasaporte(pasaporteUsuario);
                             }
+                            pasaporteUsuario.setBoletosComprados();
+                            ArchivoPasaporte.agregarPasaporte(pasaporteUsuario);
                             this.ventana.dispose();
                         }
                                 
@@ -60,6 +69,11 @@ public class ManejadorVuelos {
         }
     }
 
+    /**
+     * método privado que retorna el pasaporte del usuario 
+     * @param noPasaporte
+     * @return
+     */
     private Pasaporte obtenerPasaporte(int noPasaporte){
 
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
@@ -74,6 +88,11 @@ public class ManejadorVuelos {
         return null;
     }
 
+    /**
+     * método privado que retorna la tarjeta asociada al pasaporte del usuario
+     * @param noPasaporte
+     * @return
+     */
     private Tarjeta obtenerTarjeta(int noPasaporte){
 
         ArrayList<Tarjeta> tarjetas= ArchivoTarjeta.leerTarjeta();

@@ -38,13 +38,33 @@ public class Tarjeta implements Serializable{
         this.codicoCVC=codigoCVC;
     }
 
+    /**
+     * método que retorna el número de tarjeta
+     * @return
+     */
     public long getNoTarjeta(){return this.noTarjeta;}
 
+    /**
+     * método que retorna el número de pasaporte asociado a la tarjeta
+     * @return
+     */
     public int getNoPasaporte(){return this.noPasaporte;}
 
+    /**
+     * método que retorna la cantidad de dinero que posee la tarjeta
+     * @return
+     */
     public double getDinero(){return this.dineroActual;}
 
+    /**
+     * método que cambia la cantidad de dinero que posee la tarjeta
+     * @param dinero
+     */
     public void setDinero(Double dinero){this.dineroActual -=dinero;}
 
+    /**
+     * método que retorna el códigoCVC de la tarjeta
+     * @return
+     */
     public int getCodigoCVC(){return this.codicoCVC;}
 }

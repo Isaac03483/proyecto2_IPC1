@@ -5,6 +5,10 @@ import javax.swing.ImageIcon;
 
 public class Constante{
     
+    /**
+     * clase que contiene todas las constantes usadas en el programa
+     */
+    
     public static final String TITULO = "AeroBalamDevs";
     public static final int CARACTERES_CONTRASENA=8;
     public static final int CARACTERES_CODIGO_VUELO = 9;

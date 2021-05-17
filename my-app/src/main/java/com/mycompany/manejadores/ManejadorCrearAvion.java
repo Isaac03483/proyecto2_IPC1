@@ -16,24 +16,40 @@ public class ManejadorCrearAvion {
     
     private VentanaCrearAvion ventana;
 
+    /**
+     * Constructor para el manejo de la ventanaCrearAvion
+     * @param ventana
+     */
     public ManejadorCrearAvion(VentanaCrearAvion ventana){
         this.ventana = ventana;
     }
 
+    /**
+     * método para cambiar el aeropuerto en el que se encuentra el administrador
+     */
     public void accionAeroPuerto(){
         this.ventana.getAdministrador().seleccionarAeroPuerto(this.ventana);
     }
 
+    /**
+     * método que muestra las distintas acciones que puede realizar el administrador
+     */
     public void accionAdministrar(){
         this.ventana.getAdministrador().menuAdministrador(this.ventana);
     }
 
+    /**
+     * método que regresa al menú principal
+     */
     public void accionPrincipal(){
         Menu menu = new Menu();
         menu.setVisible(true);
         this.ventana.dispose();
     }
 
+    /**
+     * método que crea aviones con toda la información pedida en la ventana
+     */
     public void accionCrear(){
 
         if(!this.ventana.getTextoGasolina().getText().equals("") && !this.ventana.getTextoMillas().getText().equals("")){
@@ -76,6 +92,9 @@ public class ManejadorCrearAvion {
         }
     }
 
+    /**
+     * método que agrega aerolineas al comboBox
+     */
     public void seleccionarAeroLinea(){
         
         this.ventana.getComboAeroLinea().removeAllItems();

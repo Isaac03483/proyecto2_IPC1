@@ -5,11 +5,7 @@ import com.mycompany.archivos.ArchivoEmpleado;
 import com.mycompany.cargaDatos.Verificaciones;
 import com.mycompany.constantes.Constante;
 import com.mycompany.persona.empleados.*;
-
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import com.mycompany.aeropuerto.*;
 
 public class ManejadorCrearEmpleado {
@@ -17,11 +13,18 @@ public class ManejadorCrearEmpleado {
     private VentanaCrearEmpleado crear;
     private Empleado empleado;
 
+    /**
+     * Constructor para el manejo de la ventanaCrearEmpleado
+     * @param crear
+     */
     public ManejadorCrearEmpleado(VentanaCrearEmpleado crear){
         this.crear = crear;
         empleado = null;
     }
 
+    /**
+     * método que crea un nuevo empleado con la información proporcionada en la ventana
+     */
     public void accionCrear(){
         
         String nombre = this.crear.getTextoNombre().getText();
@@ -60,11 +63,17 @@ public class ManejadorCrearEmpleado {
         }
     }
 
+    /**
+     * método que muestra el menú de opciones del administrador
+     */
     public void accionAdministrar(){
 
         this.crear.getAdmin().menuAdministrador(this.crear);
     }
 
+    /**
+     * método que regresa al menú principal
+     */
     public void accionPrincipal(){
 
         Menu menu = new Menu();
@@ -73,6 +82,9 @@ public class ManejadorCrearEmpleado {
         this.crear.dispose();
     }
 
+    /**
+     * método que cambia el aeropuerto en el que se encuentra el administrador
+     */
     public void accionAeroPuerto(){
         this.crear.getAdmin().seleccionarAeroPuerto(this.crear);
     }

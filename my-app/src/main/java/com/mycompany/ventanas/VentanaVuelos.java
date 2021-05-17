@@ -27,6 +27,14 @@ public class VentanaVuelos extends JDialog{
     private int noPasaporte;
     private ManejadorVuelos manejador;
     
+    /**
+     * Constructor para la ventana VentanaVuelos
+     * @param padre
+     * @param modal
+     * @param empleado
+     * @param vuelo
+     * @param noPasaporte
+     */
     public VentanaVuelos(JFrame padre, boolean modal, Empleado empleado, Vuelo vuelo, int noPasaporte){
         super(padre, modal);
         this.setSize(500,700);
@@ -42,6 +50,9 @@ public class VentanaVuelos extends JDialog{
         manejador = new ManejadorVuelos(this);
     }
 
+    /**
+     * método para iniciar todos los componentes
+     */
     private void iniciarComponentes(){
 
         colocarPanel();
@@ -50,6 +61,9 @@ public class VentanaVuelos extends JDialog{
         colocarTexto();
     }
 
+    /**
+     * método para colocar el panel
+     */
     private void colocarPanel(){
 
         panel = new JPanel();
@@ -58,6 +72,9 @@ public class VentanaVuelos extends JDialog{
         panel.setLayout(null);
     }
 
+    /**
+     * método para colocar etiquetas
+     */
     private void colocarEtiqueta(){
 
         etiquetaTitulo = new JLabel("Distribuición de asientos vuelo no: "+this.vuelo.getCodigoVuelo(), SwingConstants.CENTER);
@@ -72,6 +89,9 @@ public class VentanaVuelos extends JDialog{
         }
     }
 
+    /**
+     * método para colocar botones
+     */
     private void colocarAsientos(){
 
         avion = buscarAvion(this.vuelo.getCodigoAvion());
@@ -125,6 +145,9 @@ public class VentanaVuelos extends JDialog{
 
     }
 
+    /**
+     * método para colocar textField
+     */
     private void colocarTexto(){
 
         if(this.empleado == null){
@@ -134,6 +157,9 @@ public class VentanaVuelos extends JDialog{
         }
     }
 
+    /**
+     * oyente para botones
+     */
     private void oyenteSeleccion(){
 
         botonCompra.addActionListener(new ActionListener(){
@@ -146,6 +172,11 @@ public class VentanaVuelos extends JDialog{
         });
     }
 
+    /**
+     * método que retorna un avión dependiendo del código
+     * @param codigoAvion
+     * @return
+     */
     private Avion buscarAvion(int codigoAvion){
 
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
@@ -160,11 +191,27 @@ public class VentanaVuelos extends JDialog{
         return null;
     }
 
+    /**
+     * retorna el vuelo seleccionado
+     * @return
+     */
     public Vuelo getVuelo(){return this.vuelo;}
 
+    /**
+     * retorna el textField
+     * @return
+     */
     public JTextField getTexto(){return this.textoAsiento;}
 
+    /**
+     * retorna el avión seleccionado
+     * @return
+     */
     public Avion getAvion(){return this.avion;}
 
+    /**
+     * retorna el número de pasaporte
+     * @return
+     */
     public int getNoPasaporte(){return this.noPasaporte;}
 }
