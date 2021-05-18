@@ -166,7 +166,6 @@ public class Vuelo implements Serializable, Runnable{
             this.etiquetaAvion.setLocation(this.etiquetaAvion.getX() + 60, this.etiquetaAvion.getY());
         } while(contador<3);
         cambiarPaisPasaportes();
-        cambiarAeroPuertoAvion();
         this.etiquetaAvion.setLocation(180, this.etiquetaAvion.getY());
         this.etiquetaAvion.setVisible(false);
         this.estado = EstadoVuelo.COMPLETADO;
@@ -176,38 +175,13 @@ public class Vuelo implements Serializable, Runnable{
 
     /**
      * método que cambia el país de los pasaportes que viajaron
+     * cambia de aeropuerto al avión y cambia la cantidad de millas recorridas de los pasaportes.
      */
     private void cambiarPaisPasaportes(){
 
         ArrayList<Reservacion> reservaciones = ArchivoReservacion.leerReservacion();
         ArrayList<Pasaporte> pasaportes = ArchivoPasaporte.leerPasaporte();
         ArrayList<AeroPuerto> aeroPuertos = ArchivoAeroPuerto.leerAeroPuertos();
-        
-        if(reservaciones != null && pasaportes != null){
-            for(Reservacion reservacion: reservaciones){
-                if(this.codigoVuelo == reservacion.getCodigoVuelo()){
-                    for(Pasaporte pasaporte: pasaportes){
-                        if(reservacion.getNoPasaporte() == pasaporte.getNoPasaporte()){
-                            for(AeroPuerto aeroPuerto: aeroPuertos){
-                                if(this.nombreAeroPuertoDestino.equals(aeroPuerto.getNombreAeroPuerto())){
-                                    pasaporte.setPaisActual(aeroPuerto.getPais());
-                                    System.out.println(pasaporte.getPaisActual());
-                                    ArchivoPasaporte.agregarPasaporte(pasaporte);
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * cambia el nombre del aeropuerto actual del avión
-     */
-    private void cambiarAeroPuertoAvion(){
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
         ArrayList<Distancia> distancias = ArchivoDistancia.leerDistancias();
         Distancia distanciaVuelo = null;
@@ -238,7 +212,26 @@ public class Vuelo implements Serializable, Runnable{
                 }
             }
         }
+        if(reservaciones != null && pasaportes != null){
+            for(Reservacion reservacion: reservaciones){
+                if(this.codigoVuelo == reservacion.getCodigoVuelo()){
+                    for(Pasaporte pasaporte: pasaportes){
+                        if(reservacion.getNoPasaporte() == pasaporte.getNoPasaporte()){
+                            for(AeroPuerto aeroPuerto: aeroPuertos){
+                                if(this.nombreAeroPuertoDestino.equals(aeroPuerto.getNombreAeroPuerto())){
+                                    pasaporte.setPaisActual(aeroPuerto.getPais());
+                                    pasaporte.setMillasRecorridas(distanciaVuelo.getCantidadMillas());
+                                    System.out.println(pasaporte.getPaisActual());
+                                    ArchivoPasaporte.agregarPasaporte(pasaporte);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
-
 
 }

@@ -87,6 +87,7 @@ public class ManejadorCliente {
                             }
                         } else {
                             System.err.println("El pasaporte no se encuentra vigente para la fecha del vuelo.");
+                            JOptionPane.showMessageDialog(null, "El pasaporte no se encuentra vigente para la fecha del vuelo.",Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
                         }
                         
                     } else {

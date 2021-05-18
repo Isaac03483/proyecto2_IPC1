@@ -181,5 +181,6 @@ public class Pasaporte implements Serializable{
      */
     public double getMillasRecorridas(){return this.millasRecorridas;}
 
+    public void setMillasRecorridas(double millas){this.millasRecorridas+=millas;}
 
 }

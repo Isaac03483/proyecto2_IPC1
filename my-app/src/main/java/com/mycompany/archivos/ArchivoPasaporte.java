@@ -75,6 +75,11 @@ public class ArchivoPasaporte {
         }
     }
 
+    
+    /** 
+     * @param noPasaporte
+     * @param fechaRenovacion
+     */
     public static void renovacionPasaporte(int noPasaporte, Date fechaRenovacion){
         
         ArrayList<Pasaporte> pasaportes = leerPasaporte();

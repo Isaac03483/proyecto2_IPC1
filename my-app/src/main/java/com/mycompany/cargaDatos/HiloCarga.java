@@ -60,6 +60,7 @@ public class HiloCarga extends Thread{
      */
     private void leerArchivo() throws FileNotFoundException, IOException, ArrayIndexOutOfBoundsException{
 
+        this.ventana.getArea().setText("");
         BufferedReader lector = new BufferedReader(new FileReader(this.archivoAProcesar));
 
         String auxiliar = lector.readLine();
@@ -103,7 +104,12 @@ public class HiloCarga extends Thread{
                     if(Verificaciones.aeroPuertoExistente(datos[1])){
 
                         if(Verificaciones.aeroLineaExistente(datos[1], datos[0])){
-                            ArchivoAvion.agregarAvion(new Avion(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5])));
+                            if(!Verificaciones.verificarAvion(Integer.parseInt(datos[2]))){
+                                ArchivoAvion.agregarAvion(new Avion(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5])));
+
+                            } else {
+                                this.ventana.getArea().append("No se pudo cargar el avión ya que ya existe.\n");
+                            }
                         } else {
                             System.err.println("Error, no se encontró la aerolinea.");
                             this.ventana.getArea().append("No se pudo cargar el avión ya que no se encontró la aerolinea.\n");
@@ -117,7 +123,11 @@ public class HiloCarga extends Thread{
                     
                     case Constante.DISTANCIA:
                     if(Verificaciones.aeroPuertoExistente(datos[0]) && Verificaciones.aeroPuertoExistente(datos[1])){
-                        ArchivoDistancia.agregarDistancia(new Distancia(datos[0], datos[1], Double.parseDouble(datos[2])));
+                        if(!Verificaciones.verificarDistancia(datos[0], datos[1])){
+                            ArchivoDistancia.agregarDistancia(new Distancia(datos[0], datos[1], Double.parseDouble(datos[2])));
+                        } else {
+                            this.ventana.getArea().append("No se pudo cargar la distancia ya que ya existe.\n");
+                        }
                     } else {
 
                         System.err.println("No se encontró uno de los aeropuertos.");
@@ -234,6 +244,8 @@ public class HiloCarga extends Thread{
                             this.ventana.getArea().append("No se pudo cargar el vuelo ya que no se ha encontrado el avión.\n");
 
                         }
+                    } else {
+                        this.ventana.getArea().append("Formato incorrecto en la fecha de salida.\n");
                     }
                     break;
     
