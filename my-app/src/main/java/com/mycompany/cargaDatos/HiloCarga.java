@@ -258,11 +258,7 @@ public class HiloCarga extends Thread{
                 e.printStackTrace();
             }
             this.ventana.getArea().append(auxiliarDos+"\n\n");
-            try{
-                Thread.sleep(500);
-            } catch(InterruptedException e){
-                e.printStackTrace();
-            }
+            
             auxiliar = lector.readLine();
 
         }

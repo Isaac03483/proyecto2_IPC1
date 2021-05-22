@@ -51,9 +51,9 @@ public class ManejadorVentanaReporte {
                     if(reservacion.getCodigoVuelo() == vuelo.getCodigoVuelo() && vuelo.getEstadoVuelo() == EstadoVuelo.COMPLETADO){
                         for(Pasaporte pasaporte: pasaportes){
                             if(reservacion.getNoPasaporte() == pasaporte.getNoPasaporte()){
-                                if(pasaporte.getSexo() == Sexo.MASCULINO){
+                                if(pasaporte.getSexo() == Sexo.Masculino){
                                     contadores[0]++;
-                                } else if(pasaporte.getSexo() == Sexo.FEMENINO) {
+                                } else if(pasaporte.getSexo() == Sexo.Femenino) {
                                     contadores[1]++;
                                 } else {
                                     contadores[2]++;
@@ -66,9 +66,9 @@ public class ManejadorVentanaReporte {
                 }
             }
         }
-        String[] filaHombre = {Sexo.MASCULINO.name(), Integer.toString(contadores[0])};
-        String[] filaMujer = {Sexo.FEMENINO.name(), Integer.toString(contadores[1])};
-        String[] filaOtro = {Sexo.SINDEFINIR.name(), Integer.toString(contadores[2])};
+        String[] filaHombre = {Sexo.Masculino.name(), Integer.toString(contadores[0])};
+        String[] filaMujer = {Sexo.Femenino.name(), Integer.toString(contadores[1])};
+        String[] filaOtro = {Sexo.Sin_definir.name(), Integer.toString(contadores[2])};
 
         this.ventana.getModelo().addRow(filaHombre);
         this.ventana.getModelo().addRow(filaMujer);
@@ -94,9 +94,9 @@ public class ManejadorVentanaReporte {
                     if(reservacion.getCodigoVuelo() == vuelo.getCodigoVuelo() && vuelo.getEstadoVuelo() == EstadoVuelo.COMPLETADO){
                         for(Pasaporte pasaporte: pasaportes){
                             if(reservacion.getNoPasaporte() == pasaporte.getNoPasaporte()){
-                                if(pasaporte.getEstadoCivil() == EstadoCivil.SOLTERO){
+                                if(pasaporte.getEstadoCivil() == EstadoCivil.Soltero){
                                     contadores[0]++;
-                                } else if(pasaporte.getEstadoCivil() == EstadoCivil.CASADO) {
+                                } else if(pasaporte.getEstadoCivil() == EstadoCivil.Casado) {
                                     contadores[1]++;
                                 } else {
                                     contadores[2]++;
@@ -109,9 +109,9 @@ public class ManejadorVentanaReporte {
                 }
             }
         }
-        String[] filaCasado = {EstadoCivil.CASADO.name(), Integer.toString(contadores[1])};
-        String[] filaSoltero = {EstadoCivil.SOLTERO.name(), Integer.toString(contadores[0])};
-        String[] filaDivorciado= {EstadoCivil.DIVORCIADO.name(), Integer.toString(contadores[2])};
+        String[] filaCasado = {EstadoCivil.Casado.name(), Integer.toString(contadores[1])};
+        String[] filaSoltero = {EstadoCivil.Soltero.name(), Integer.toString(contadores[0])};
+        String[] filaDivorciado= {EstadoCivil.Divorciado.name(), Integer.toString(contadores[2])};
 
         this.ventana.getModelo().addRow(filaCasado);
         this.ventana.getModelo().addRow(filaSoltero);

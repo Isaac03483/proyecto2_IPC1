@@ -5,5 +5,5 @@ public enum EstadoCivil{
     /**
      * enums para el estado civil
      */
-    CASADO, SOLTERO, DIVORCIADO;
+    Casado, Soltero, Divorciado;
 }

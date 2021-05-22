@@ -4,5 +4,5 @@ public enum Sexo{
     /**
      * enums para sexo
      */
-    MASCULINO,FEMENINO, SINDEFINIR;
+    Masculino,Femenino, Sin_definir;
 }

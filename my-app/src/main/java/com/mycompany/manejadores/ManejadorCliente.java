@@ -58,7 +58,7 @@ public class ManejadorCliente {
     
                                 if(Verificaciones.aeroLineaExistente(aeroPuertoOrigen, aeroLinea) && Verificaciones.aeroLineaExistente(aeroPuertoDestino, aeroLinea)){
     
-                                    ArrayList<Vuelo> listaVuelos = buscarVuelos(aeroPuertoOrigen, aeroPuertoDestino, aeroLinea);
+                                    ArrayList<Vuelo> listaVuelos = buscarVuelos(aeroPuertoOrigen, aeroPuertoDestino, aeroLinea, fecha);
     
                                     String listarVuelos = listarVuelos(listaVuelos);
     
@@ -74,7 +74,7 @@ public class ManejadorCliente {
                                             VentanaVuelos ventanaVuelo = new VentanaVuelos(this.cliente, true, null, vuelo, noPasaporte);
                                             ventanaVuelo.setVisible(true);
                                         }
-                                    }catch(ArrayIndexOutOfBoundsException e){
+                                    }catch(IndexOutOfBoundsException e){
                                         System.err.println(e.getMessage());
                                         JOptionPane.showMessageDialog(null, "El vuelo seleccionado no está disponible.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
                                     } catch(NumberFormatException e){
@@ -83,6 +83,8 @@ public class ManejadorCliente {
                                     }
                                 } else {
                                     System.err.println("No existe la aerolinea en ambos aeropuertos.");
+                                    JOptionPane.showMessageDialog(null, "No existe la aerolinea en ambos aeropuertos.",Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+
                                 }
                             }
                         } else {
@@ -92,9 +94,12 @@ public class ManejadorCliente {
                         
                     } else {
                         JOptionPane.showMessageDialog(null, "El pasaporte actualmente se encuentra en otro país.", Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+
                     }
                 } else {
                     System.out.println("Este pasaporte tiene un vuelo en proceso.");
+                    JOptionPane.showMessageDialog(null, "El pasaporte tiene un vuelo en proceso.",Constante.TITULO, JOptionPane.INFORMATION_MESSAGE);
+
                 }
                 
             } else {
@@ -131,7 +136,7 @@ public class ManejadorCliente {
      * @param aeroLinea
      * @return
      */
-    private ArrayList<Vuelo> buscarVuelos(String origen, String destino, String aeroLinea){
+    private ArrayList<Vuelo> buscarVuelos(String origen, String destino, String aeroLinea, Date fechaSalida){
 
         ArrayList<Vuelo> vuelos = ArchivoVuelo.leerVuelos();
         ArrayList<Avion> aviones = ArchivoAvion.leerAvion();
@@ -150,8 +155,13 @@ public class ManejadorCliente {
             for(Vuelo vuelo: vuelos){
                 for(Avion avion: avionesSeleccionados){
                     if(vuelo.getCodigoAvion() == avion.getCodigoAvion()){
-                        vuelosCompatibles.add(vuelo);
-                        break;
+                        if(origen.equals(vuelo.getAeroPuertoOrigen()) && destino.equals(vuelo.getAeroPuertoDestino())){
+
+                            if(vuelo.getFechaSalida().equals(fechaSalida)){
+                                vuelosCompatibles.add(vuelo);
+                                break;
+                            }
+                        }
                     }
                 }
             }

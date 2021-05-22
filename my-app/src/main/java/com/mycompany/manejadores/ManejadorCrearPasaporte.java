@@ -106,11 +106,11 @@ public class ManejadorCrearPasaporte {
     private Sexo sexoSeleccionado(){
 
         if(this.ventana.getRadioHombre().isSelected()){
-            return Sexo.MASCULINO;
+            return Sexo.Masculino;
         } else if(this.ventana.getRadioMujer().isSelected()){
-            return Sexo.FEMENINO;
+            return Sexo.Femenino;
         } else {
-            return  Sexo.SINDEFINIR;
+            return  Sexo.Sin_definir;
         }
     }
 
@@ -122,11 +122,11 @@ public class ManejadorCrearPasaporte {
     private EstadoCivil estadoSeleccionado(){
 
         if(this.ventana.getRadioCasado().isSelected()){
-            return EstadoCivil.CASADO;
+            return EstadoCivil.Casado;
         } else if(this.ventana.getRadioDivorciado().isSelected()){
-            return EstadoCivil.DIVORCIADO;
+            return EstadoCivil.Divorciado;
         } else {
-            return EstadoCivil.SOLTERO;
+            return EstadoCivil.Soltero;
         }
     }
 
